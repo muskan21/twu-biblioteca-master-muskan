@@ -1,14 +1,19 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 public class BibliotecaApp {
     Display display;
+    ArrayList<String> books;
 
-    public BibliotecaApp(Display display) {
+    public BibliotecaApp(Display display, ArrayList<String> books) {
         this.display = display;
+        this.books = books;
     }
 
     public static void main(String[] args) {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(new Display());
+        ArrayList<String> books = new ArrayList<String>();
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(new Display(), books);
         bibliotecaApp.start();
     }
 
