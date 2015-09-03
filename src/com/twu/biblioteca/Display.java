@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
-/**
- * Created by muskandhanda on 9/3/15.
- */
 public class Display {
+    public void welcomeMessage(String message) {
+        System.out.println(message);
+    }
 }
