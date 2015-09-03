@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -29,5 +30,16 @@ public class DisplayTest {
         display.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         assertEquals("Welcome To Biblioteca Library Management System.\nHappy To Help.\n", out.toString());
         System.setOut(System.out);
+    }
+
+    @Test
+    public void shouldPrintTheListOfBooksOnConsole() {
+        Display display = mock(Display.class);
+        ArrayList<String> books = new ArrayList<String>();
+
+        books.add("Print");
+        display.listOfBooks(books);
+
+        Mockito.verify(display, times(1)).listOfBooks(books);
     }
 }
