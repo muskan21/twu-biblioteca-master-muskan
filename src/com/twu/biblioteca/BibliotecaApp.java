@@ -20,4 +20,12 @@ public class BibliotecaApp {
     public void start() {
          display.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
     }
+
+    public void initializeBooks() {
+        books.add("Gone Girl");
+        books.add("Immortals Of Meluha");
+        books.add("Secrets Of Nagas");
+        books.add("Pragmatic Programmer");
+        books.add("Let Us Java");
+    }
 }

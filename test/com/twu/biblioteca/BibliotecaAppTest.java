@@ -15,7 +15,9 @@ public class BibliotecaAppTest {
     @Test
     public void shouldDisplayWelcomeMessageOnStartingApplication() {
         BibliotecaApp bibliotecaApp = mock(BibliotecaApp.class);
+
         bibliotecaApp.start();
+
         Mockito.verify(bibliotecaApp, times(1)).start();
     }
 
@@ -23,7 +25,20 @@ public class BibliotecaAppTest {
     public void shouldInitiallyHaveAnEmptyListOfBooks() {
         Display display = new Display();
         ArrayList<String> books = new ArrayList<String>();
+
         BibliotecaApp bibliotecaApp = new BibliotecaApp(display, books);
+
         assertEquals(0, bibliotecaApp.books.size());
+    }
+
+    @Test
+    public void initializeBooksShouldAddTheBooksToTheList() {
+        Display display = new Display();
+        ArrayList<String> books = new ArrayList<String>();
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(display, books);
+
+        bibliotecaApp.initializeBooks();
+
+        assertEquals(5, bibliotecaApp.books.size());
     }
 }
