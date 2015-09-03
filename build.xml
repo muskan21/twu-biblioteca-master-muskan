@@ -18,6 +18,7 @@
         <junit printsummary="true" haltonfailure="true" outputtoformatters="true">
             <classpath>
                 <pathelement location="lib/junit-4.12.jar"/>
+                <pathelement location="lib/mockito-all-1.9.5.jar"/>
                 <pathelement location="out"/>
             </classpath>
 
@@ -46,6 +47,7 @@
         <java fork="true" failonerror="yes" classname="${package.name}.BibliotecaApp">
             <classpath>
                 <path location="lib/${project.name}.jar"/>
+                <path location="lib/mockito-all-1.9.5.jar"/>
             </classpath>
         </java>
     </target>
