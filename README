@@ -1,0 +1,17 @@
+#Project Description
+Biblioteca master is a project that models the Bangalore Public Library for people to be able to use the Library Management System.
+
+#Environment Setup
+1. Any OS.
+2. JDK(1.7 or above)
+3. Apache Ant
+
+##Build The Project
+Run the following command:
+`ant build`
+
+##Run The Testcases
+`ant runTest`
+
+##Run the Project
+`ant run`
