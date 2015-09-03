@@ -1,0 +1,52 @@
+<project name="com.twu.biblioteca" default="run" basedir=".">
+
+    <property name="project.name" value="TWU_Biblioteca-master-Muskan"></property>
+    <property name="package.name" value="com.twu.biblioteca"/>
+
+    <target name = "init">
+        <mkdir dir="out" />
+    </target>
+
+    <target name="build" depends="clean,init">
+        <javac destdir="out">
+            <src path="src:test"/>
+            <classpath location = "lib/junit-4.11.jar"/>
+        </javac>
+    </target>
+
+    <target name="runTest" depends="build">
+        <junit printsummary="true" haltonfailure="true" outputtoformatters="true">
+            <classpath>
+                <pathelement location="lib/junit-4.12.jar"/>
+                <pathelement location="out"/>
+            </classpath>
+
+            <batchtest fork="yes" haltonfailure="true">
+                <fileset dir="out" includes="**/*Test*.class"/>
+            </batchtest>
+            <formatter type="plain" usefile="false"/>
+        </junit>
+    </target>
+
+    <target name="clean">
+        <delete dir="out"/>
+    </target>
+
+    <target name="buildJar" depends="build">
+        <jar destfile="lib/${project.name}.jar"
+             basedir="out"
+             excludes="**/*Test*.class">
+            <manifest>
+                <attribute name="Main-Class" value="${package.name}.BibliotecaApp"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="buildJar">
+        <java fork="true" failonerror="yes" classname="${package.name}.BibliotecaApp">
+            <classpath>
+                <path location="lib/${project.name}.jar"/>
+            </classpath>
+        </java>
+    </target>
+</project>
