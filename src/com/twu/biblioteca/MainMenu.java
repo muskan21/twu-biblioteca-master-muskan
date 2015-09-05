@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,9 +29,16 @@ public class MainMenu {
         }
     }
 
-    public int inputMenuChoice() {
-        Scanner scanner = new Scanner(System.in);
+    public int inputMenuChoice(Scanner read) {
+        Scanner scanner = read;
         String input = scanner.nextLine();
-        return Integer.parseInt(input);
+        int inputChoice = Integer.parseInt(input);
+        if(inputChoice == 1) {
+            return inputChoice;
+        }
+        else {
+            inputChoice = inputMenuChoice(read);
+        }
+        return inputChoice;
     }
 }

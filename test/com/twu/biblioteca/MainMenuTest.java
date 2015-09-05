@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -36,12 +37,22 @@ public class MainMenuTest {
     @Test
     public void shouldGetInputChoiceForMenu() {
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
-        System.setIn(in);
+        Scanner scanner = new Scanner(in);
         MainMenu mainMenu = new MainMenu();
 
-        int inputChoice = mainMenu.inputMenuChoice();
+        int inputChoice = mainMenu.inputMenuChoice(scanner);
 
         assertEquals(1, inputChoice);
-        System.setIn(System.in);
+    }
+
+    @Test
+    public void shouldRecursivelyGetInputChoiceForMenuUntilValidInputIsEntered() {
+        ByteArrayInputStream in = new ByteArrayInputStream("5\n1".getBytes());
+        Scanner scanner = new Scanner(in);
+        MainMenu mainMenu = new MainMenu();
+
+        int inputChoice = mainMenu.inputMenuChoice(scanner);
+
+        assertEquals(1, inputChoice);
     }
 }
