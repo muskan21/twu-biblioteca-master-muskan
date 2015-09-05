@@ -1,7 +1,36 @@
 package com.twu.biblioteca;
 
-/**
- * Created by muskandhanda on 9/5/15.
- */
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class MainMenu {
+    private ArrayList<String> options;
+    private int noOfOptions;
+
+    public MainMenu() {
+        options = new ArrayList<String>();
+        noOfOptions = 0;
+    }
+
+    public void addOption(String option) {
+        noOfOptions++;
+        options.add(noOfOptions+". "+option);
+    }
+
+    public int getNoOfOptions() {
+        return noOfOptions;
+    }
+
+    public void display() {
+        System.out.println("Main Menu : ");
+        for (String option: options) {
+            System.out.println(option);
+        }
+    }
+
+    public int inputMenuChoice() {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        return Integer.parseInt(input);
+    }
 }
