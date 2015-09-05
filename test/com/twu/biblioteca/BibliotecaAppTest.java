@@ -35,51 +35,9 @@ public class BibliotecaAppTest {
     public void shouldPrintTheWelcomeMessageOnConsole() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(new ArrayList<String>());
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(new BookList(new ArrayList<Book>()));
         bibliotecaApp.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         assertEquals("Welcome To Biblioteca Library Management System.\nHappy To Help.\n", out.toString());
-        System.setOut(System.out);
-    }
-
-    @Test
-    public void shouldInitiallyHaveAnEmptyListOfBooks() {
-        ArrayList<String> books = new ArrayList<String>();
-
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(books);
-
-        assertEquals(0, bibliotecaApp.books.size());
-    }
-
-    @Test
-    public void initializeBooksShouldAddTheBooksToTheList() {
-        ArrayList<String> books = new ArrayList<String>();
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(books);
-
-        bibliotecaApp.initializeBooks();
-
-        assertEquals(5, bibliotecaApp.books.size());
-    }
-
-    @Test
-    public void shouldInvokeTheMethodToPrintTheListOfBooksOnConsole() {
-        BibliotecaApp bibliotecaApp = mock(BibliotecaApp.class);
-
-        bibliotecaApp.listOfBooks();
-
-        Mockito.verify(bibliotecaApp, times(1)).listOfBooks();
-    }
-
-    @Test
-    public void shouldPrintTheListOfBooksOnConsole() {
-        ArrayList<String> books = new ArrayList<String>();
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(books);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
-        bibliotecaApp.initializeBooks();
-        bibliotecaApp.listOfBooks();
-
-        assertEquals("Gone Girl\nImmortals Of Meluha\nSecrets Of Nagas\nPragmatic Programmer\nLet Us Java\n", out.toString());
         System.setOut(System.out);
     }
 }
