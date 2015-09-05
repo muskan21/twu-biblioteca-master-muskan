@@ -32,7 +32,13 @@ public class MainMenu {
     public int inputMenuChoice(Scanner read) {
         Scanner scanner = read;
         String input = scanner.nextLine();
-        int inputChoice = Integer.parseInt(input);
+        int inputChoice = 0;
+        try {
+            inputChoice = Integer.parseInt(input);
+        }
+        catch (NumberFormatException e) {
+            inputChoice = 0;
+        }
         if(inputChoice == 1) {
             return inputChoice;
         }

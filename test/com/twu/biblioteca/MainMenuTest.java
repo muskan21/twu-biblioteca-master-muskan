@@ -55,4 +55,15 @@ public class MainMenuTest {
 
         assertEquals(1, inputChoice);
     }
+
+    @Test
+    public void shouldRecursivelyGetInputChoiceForMenuUntilValidIntegerInputIsEntered() {
+        ByteArrayInputStream in = new ByteArrayInputStream("Muskan\n1".getBytes());
+        Scanner scanner = new Scanner(in);
+        MainMenu mainMenu = new MainMenu();
+
+        int inputChoice = mainMenu.inputMenuChoice(scanner);
+
+        assertEquals(1, inputChoice);
+    }
 }
