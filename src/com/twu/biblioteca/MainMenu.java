@@ -40,6 +40,7 @@ public class MainMenu {
             inputChoice = 0;
         }
         if(inputChoice == 1) {
+            System.out.println("Select A Valid Option");
             return inputChoice;
         }
         else {
