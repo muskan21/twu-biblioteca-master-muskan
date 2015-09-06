@@ -29,7 +29,7 @@ public class MainMenuTest {
         mainMenu.addOption("List Books.");
         mainMenu.display();
 
-        assertEquals("Main Menu : \n1. List Books.\n", out.toString());
+        assertEquals("Main Menu : \n1. List Books.\nEnter Your Choice : \n", out.toString());
         System.setOut(System.out);
 
     }

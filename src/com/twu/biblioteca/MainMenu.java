@@ -27,25 +27,29 @@ public class MainMenu {
         for (String option: options) {
             System.out.println(option);
         }
+        System.out.println("Enter Your Choice : ");
     }
 
     public int inputMenuChoice(Scanner read) {
         Scanner scanner = read;
-        String input = scanner.nextLine();
+        String input;
         int inputChoice = 0;
-        try {
-            inputChoice = Integer.parseInt(input);
-        }
-        catch (NumberFormatException e) {
-            inputChoice = 0;
-        }
-        if(inputChoice == 1) {
-            System.out.println("Select A Valid Option");
-            return inputChoice;
-        }
-        else {
-            inputChoice = inputMenuChoice(read);
-        }
-        return inputChoice;
+        do {
+            input = scanner.nextLine();
+            try {
+                inputChoice = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                inputChoice = 0;
+            }
+            finally {
+                if (inputChoice == 1) {
+                    return inputChoice;
+                } else {
+                    System.out.println("Select A Valid Option");
+                    inputChoice = inputMenuChoice(read);
+                }
+                return inputChoice;
+            }
+        } while(inputChoice != 1);
     }
 }
