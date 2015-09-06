@@ -29,7 +29,7 @@ public class BookListTest {
 
         bookList.display();
 
-        assertEquals("Gone Girl\t\tGillian Flynn\t\t2012\n", out.toString());
+        assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", out.toString());
         System.setOut(System.out);
     }
 }
