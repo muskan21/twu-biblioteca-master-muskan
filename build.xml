@@ -18,7 +18,7 @@
     <target name="runTest" depends="build">
         <junit printsummary="true" haltonfailure="true" outputtoformatters="true">
             <classpath>
-                <pathelement location="lib/junit-4.12.jar"/>
+                <pathelement location="lib/junit-4.11.jar"/>
                 <pathelement location="lib/mockito-all-1.9.5.jar"/>
                 <pathelement location="out"/>
             </classpath>
