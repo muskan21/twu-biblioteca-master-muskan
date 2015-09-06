@@ -18,7 +18,7 @@ public class BookTest {
 
         book.display();
 
-        assertEquals("Christmas Carol\t\tCharles Dickens\t\t1843\n", out.toString());
+        assertEquals("Christmas Carol                Charles Dickens                1843                          \n", out.toString());
         System.setOut(System.out);
     }
 }
