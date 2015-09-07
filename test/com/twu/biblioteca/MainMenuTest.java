@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -67,14 +69,17 @@ public class MainMenuTest {
         assertEquals(1, inputChoice);
     }
 
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
+
     @Test
     public void shouldExitIfExitOptionNo2IsChosen() {
         ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
         Scanner scanner = new Scanner(in);
         MainMenu mainMenu = new MainMenu();
 
-        int inputChoice = mainMenu.inputMenuChoice(scanner);
+        exit.expectSystemExit();
 
-        assertEquals(Integer.MAX_VALUE, inputChoice);
+        int inputChoice = mainMenu.inputMenuChoice(scanner);
     }
 }

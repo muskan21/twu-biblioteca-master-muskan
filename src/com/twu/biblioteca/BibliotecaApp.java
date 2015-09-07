@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
-    public static final int EXIT_STATUS = Integer.MAX_VALUE;
     private BookList books;
     private MainMenu mainMenu;
 
@@ -31,8 +30,7 @@ public class BibliotecaApp {
             mainMenu.display();
             Scanner scanner = new Scanner(System.in);
             choice = mainMenu.inputMenuChoice(scanner);
-            if (choice != EXIT_STATUS)
-                books.display();
+            books.display();
         }while(choice == 1);
     }
 

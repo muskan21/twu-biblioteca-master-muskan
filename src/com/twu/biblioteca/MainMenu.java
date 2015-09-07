@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainMenu {
-    public static final int EXIT_STATUS = Integer.MAX_VALUE;
     private ArrayList<String> options;
     private int noOfOptions;
 
@@ -45,14 +44,13 @@ public class MainMenu {
                 if (inputChoice == 1) {
                     return inputChoice;
                 } else if(inputChoice == 2) {
-                    return EXIT_STATUS;
+                    System.exit(0);
                 }
                 else {
-                    System.out.println("Select A Valid Option");
-                    inputChoice = inputMenuChoice(read);
+                    System.out.println("Select A Valid Option!!");
                 }
-                return inputChoice;
             }
         } while(inputChoice != 1);
+        return inputChoice;
     }
 }
