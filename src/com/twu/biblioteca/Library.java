@@ -31,15 +31,8 @@ public class Library {
     public String inputCheckedOutBook() {
         Scanner scanner = new Scanner(System.in);
         String bookName = "";
-        try {
-            bookName = scanner.nextLine();
-        }
-        catch(InputMismatchException e) {
-            System.out.println("Invalid name of the book to be checked out!");
-        }
-        finally {
-            return bookName;
-        }
+        bookName = scanner.nextLine();
+        return bookName;
     }
 
     public boolean checkAvailabilityForCheckOut(String bookName) {

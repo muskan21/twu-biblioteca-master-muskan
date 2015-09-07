@@ -1,58 +1,75 @@
-<project name="com.twu.biblioteca" default="run" basedir=".">
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TWU_Biblioteca-master-Muskan" default="runjUnit" basedir=".">
 
-    <property name="project.name" value="TWU_Biblioteca-master-Muskan"></property>
-    <property name="package.name" value="com.twu.biblioteca"/>
+    <path id="test.compile.classpath" description="classpath for compiling test-sources">
+        <pathelement location="out/classes" />
+        <pathelement location="lib/junit-4.11.jar" />
+        <pathelement location="lib/system-rules-1.12.0.jar" />
+        <pathelement location="lib/mockito-all-1.9.5.jar"/>
+    </path>
+    <path id="test.runtime.classpath" description="classpath for running junit-tests">
+        <pathelement location="out/testclasses" />
+        <pathelement location="out/instrumentedclasses" />
+        <pathelement location="lib/junit-4.11.jar" />
+        <pathelement location="lib/system-rules-1.12.0.jar" />
+        <pathelement location="lib/hamcrest-core-1.3.jar"/>
+        <pathelement location="lib/hamcrest-library-1.3.jar"/>
+        <pathelement location="lib/mockito-all-1.9.5.jar"/>
 
-    <target name = "init">
-        <mkdir dir="out" />
-    </target>
+    </path>
+    <path id="cobertura.classpath" description="classpath for instrumenting classes">
+        <pathelement location="lib/cobertura-2.1.1.jar" />
+        <fileset dir="lib">
+            <include name="cobertura-dependencies/*.jar" />
+        </fileset>
+    </path>
 
-    <target name="build" depends="clean,init">
-        <javac destdir="out">
-            <src path="src:test"/>
-            <classpath location = "lib/junit-4.11.jar"/>
-            <classpath location="lib/mockito-all-1.9.5.jar"/>
-            <classpath location="lib/system-rules-1.12.0.jar"/>
-        </javac>
-    </target>
-
-    <target name="runTest" depends="build">
-        <junit printsummary="true" haltonfailure="true" outputtoformatters="true">
-            <classpath>
-                <pathelement location="lib/junit-4.11.jar"/>
-                <pathelement location="lib/mockito-all-1.9.5.jar"/>
-                <pathelement location="lib/system-rules-1.12.0.jar"/>
-                <pathelement location="out"/>
-            </classpath>
-
-            <batchtest fork="yes" haltonfailure="true">
-                <fileset dir="out" includes="**/*Test*.class"/>
-            </batchtest>
-            <formatter type="plain" usefile="false"/>
-        </junit>
-    </target>
+    <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 
     <target name="clean">
-        <delete dir="out"/>
+        <delete includeEmptyDirs="true" failonerror="false">
+            <fileset dir="out" />
+        </delete>
+    </target>
+    <target name="prepare" depends="clean">
+        <mkdir dir="out" />
+        <mkdir dir="out/classes" />
+        <mkdir dir="out/testclasses" />
+        <mkdir dir="out/reports" />
+        <mkdir dir="out/reports/junit" />
+        <mkdir dir="out/reports/cobertura" />
+        <mkdir dir="out/reports/instrumentedclasses" />
     </target>
 
-    <target name="buildJar" depends="build">
-        <jar destfile="lib/${project.name}.jar"
-             basedir="out"
-             excludes="**/*Test*.class">
-            <manifest>
-                <attribute name="Main-Class" value="${package.name}.BibliotecaApp"/>
-            </manifest>
-        </jar>
+    <target name="compile.sources" depends="prepare">
+        <javac srcdir="src" destdir="out/classes" debug="on" fork="true" includeantruntime="no" />
     </target>
 
-    <target name="run" depends="buildJar">
-        <java fork="true" failonerror="yes" classname="${package.name}.BibliotecaApp">
-            <classpath>
-                <path location="lib/${project.name}.jar"/>
-                <path location="lib/mockito-all-1.9.5.jar"/>
-                <path location="lib/system-rules-1.12.0.jar"/>
-            </classpath>
-        </java>
+    <target name="instrument.classes" depends="compile.sources">
+        <cobertura-instrument todir="out/instrumentedclasses" datafile="out/cobertura.ser">
+            <includeclasses regex=".*" />
+            <instrumentationClasspath>
+                <pathelement location="out/classes" />
+            </instrumentationClasspath>
+        </cobertura-instrument>
+    </target>
+
+    <target name="compile.tests" depends="instrument.classes">
+        <javac classpathref="test.compile.classpath" srcdir="test" destdir="out/testclasses" debug="on" fork="true" includeantruntime="no" />
+    </target>
+
+    <target name="runjUnit" depends="compile.tests">
+        <junit fork="yes" forkmode="once" printsummary="yes" haltonfailure="no" showoutput="true">
+            <formatter type="xml" />
+            <classpath refid="test.runtime.classpath" />
+            <batchtest fork="yes" todir="out/reports/junit">
+                <fileset dir="test">
+                    <include name="**/*Test.java" />
+                </fileset>
+            </batchtest>
+            <sysproperty key="net.sourceforge.cobertura.datafile" file="out/cobertura.ser" />
+            <classpath refid="cobertura.classpath" />
+        </junit>
+        <cobertura-report format="xml" destdir="out/reports/cobertura" datafile="out/cobertura.ser" srcdir="src" />
     </target>
 </project>
