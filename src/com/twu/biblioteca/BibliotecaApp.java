@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
+    public static final int EXIT_STATUS = Integer.MAX_VALUE;
     private BookList books;
     private MainMenu mainMenu;
 
@@ -15,24 +16,37 @@ public class BibliotecaApp {
     public static void main(String[] args) {
 
         ArrayList<Book> bookslist = new ArrayList<Book>();
-        bookslist.add(new Book("Gone Girl", "Gillian Flynn", 2012));
-        bookslist.add(new Book("Immortals Of Meluha", "Amish Tripathi", 2010));
-        bookslist.add(new Book("Secrets Of Nagas", "Amish Tripathi", 2011));
-        bookslist.add(new Book("Pragmatic Programmer", "Andrew Hunt", 1999));
-        bookslist.add(new Book("Let Us Java", "Yashavant Kanetkar", 2012));
+        initializeBooksList(bookslist);
         BookList books = new BookList(bookslist);
         MainMenu mainMenu = new MainMenu();
-        mainMenu.addOption("List Books.");
+        initializeMainMenu(mainMenu);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(books, mainMenu);
         bibliotecaApp.start();
     }
 
     public void start() {
         welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
-        mainMenu.display();
-        Scanner scanner = new Scanner(System.in);
-        mainMenu.inputMenuChoice(scanner);
-        books.display();
+        int choice;
+        do {
+            mainMenu.display();
+            Scanner scanner = new Scanner(System.in);
+            choice = mainMenu.inputMenuChoice(scanner);
+            if (choice != EXIT_STATUS)
+                books.display();
+        }while(choice == 1);
+    }
+
+    private static void initializeMainMenu(MainMenu mainMenu) {
+        mainMenu.addOption("List Books.");
+        mainMenu.addOption("Exit.");
+    }
+
+    private static void initializeBooksList(ArrayList<Book> bookslist) {
+        bookslist.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        bookslist.add(new Book("Immortals Of Meluha", "Amish Tripathi", 2010));
+        bookslist.add(new Book("Secrets Of Nagas", "Amish Tripathi", 2011));
+        bookslist.add(new Book("Pragmatic Programmer", "Andrew Hunt", 1999));
+        bookslist.add(new Book("Let Us Java", "Yashavant Kanetkar", 2012));
     }
 
     public void welcomeMessage(String message) {

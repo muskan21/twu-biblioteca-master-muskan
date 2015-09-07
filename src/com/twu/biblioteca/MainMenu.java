@@ -1,10 +1,10 @@
 package com.twu.biblioteca;
 
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainMenu {
+    public static final int EXIT_STATUS = Integer.MAX_VALUE;
     private ArrayList<String> options;
     private int noOfOptions;
 
@@ -44,7 +44,10 @@ public class MainMenu {
             finally {
                 if (inputChoice == 1) {
                     return inputChoice;
-                } else {
+                } else if(inputChoice == 2) {
+                    return EXIT_STATUS;
+                }
+                else {
                     System.out.println("Select A Valid Option");
                     inputChoice = inputMenuChoice(read);
                 }

@@ -66,4 +66,15 @@ public class MainMenuTest {
 
         assertEquals(1, inputChoice);
     }
+
+    @Test
+    public void shouldExitIfExitOptionNo2IsChosen() {
+        ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
+        Scanner scanner = new Scanner(in);
+        MainMenu mainMenu = new MainMenu();
+
+        int inputChoice = mainMenu.inputMenuChoice(scanner);
+
+        assertEquals(Integer.MAX_VALUE, inputChoice);
+    }
 }
