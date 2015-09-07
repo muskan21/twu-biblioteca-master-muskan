@@ -4,22 +4,35 @@ public class Book {
     private String bookName;
     private String bookAuthor;
     private int yearPublished;
-    private int serialNumber;
 
-    public Book(int serialNumber, String bookName, String bookAuthor, int yearPublished) {
+    public Book(String bookName, String bookAuthor, int yearPublished) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.yearPublished = yearPublished;
-        this.serialNumber = serialNumber;
+    }
+
+    public Book(String bookName) {
+        this.bookName = bookName;
+        this.bookAuthor = "";
+        this.yearPublished = 0;
     }
 
     public void display() {
-        System.out.printf("%-15d %-30s %-30s %-30s\n", serialNumber, bookName, bookAuthor, yearPublished);
+        System.out.printf("%-30s %-30s %-30s\n", bookName, bookAuthor, yearPublished);
     }
 
-    public boolean matchSerialNumber(int serialNumber) {
-        if(this.serialNumber == serialNumber)
+    @Override
+    public boolean equals(Object bookObject) {
+        if (this == bookObject)
             return true;
-        return false;
+        if (bookObject == null || getClass() != bookObject.getClass())
+            return false;
+        Book book = (Book) bookObject;
+        return bookName.equalsIgnoreCase(book.bookName);
+    }
+
+    @Override
+    public int hashCode() {
+        return bookName.toLowerCase().hashCode();
     }
 }

@@ -1,19 +1,20 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class BookList {
+public class Library {
     private ArrayList<Book> availableBookList;
     private ArrayList<Book> checkedOutBookList;
 
-    public BookList(ArrayList<Book> availableBookList) {
+    public Library(ArrayList<Book> availableBookList) {
         this.availableBookList = availableBookList;
         this.checkedOutBookList = new ArrayList<Book>();
     }
 
     public void display() {
-        System.out.printf("%-15s %-30s %-30s %-30s\n\n","Serial No.", "Book Name", "Book Author", "Year Of Publish");
+        System.out.printf("%-30s %-30s %-30s\n\n","Book Name", "Book Author", "Year Of Publish");
         for(Book book : availableBookList) {
             book.display();
         }
@@ -27,14 +28,24 @@ public class BookList {
         return;
     }
 
-    public int inputCheckedOutBook() {
+    public String inputCheckedOutBook() {
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextInt();
+        String bookName = "";
+        try {
+            bookName = scanner.nextLine();
+        }
+        catch(InputMismatchException e) {
+            System.out.println("Invalid name of the book to be checked out!");
+        }
+        finally {
+            return bookName;
+        }
     }
 
-    public boolean checkAvailabilityForCheckOut(int bookno) {
+    public boolean checkAvailabilityForCheckOut(String bookName) {
+        Book checkOutBook = new Book(bookName);
         for(Book book : availableBookList) {
-            if(book.matchSerialNumber(bookno))
+            if(book.equals(checkOutBook))
                 return true;
         }
         return false;

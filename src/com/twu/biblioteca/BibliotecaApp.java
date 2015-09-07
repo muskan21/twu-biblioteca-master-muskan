@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
-    private BookList books;
+    private Library books;
     private MainMenu mainMenu;
 
-    public BibliotecaApp(BookList books, MainMenu mainMenu) {
+    public BibliotecaApp(Library books, MainMenu mainMenu) {
         this.books = books;
         this.mainMenu = mainMenu;
     }
@@ -16,7 +16,7 @@ public class BibliotecaApp {
 
         ArrayList<Book> bookslist = new ArrayList<Book>();
         initializeBooksList(bookslist);
-        BookList books = new BookList(bookslist);
+        Library books = new Library(bookslist);
         MainMenu mainMenu = new MainMenu();
         initializeMainMenu(mainMenu);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(books, mainMenu);
@@ -47,10 +47,10 @@ public class BibliotecaApp {
     }
 
     private static void initializeBooksList(ArrayList<Book> bookslist) {
-        bookslist.add(new Book(1, "Gone Girl", "Gillian Flynn", 2012));
-        bookslist.add(new Book(2, "Immortals Of Meluha", "Amish Tripathi", 2010));
-        bookslist.add(new Book(3, "Secrets Of Nagas", "Amish Tripathi", 2011));
-        bookslist.add(new Book(4, "Pragmatic Programmer", "Andrew Hunt", 1999));
-        bookslist.add(new Book(5, "Let Us Java", "Yashavant Kanetkar", 2012));
+        bookslist.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        bookslist.add(new Book("Immortals Of Meluha", "Amish Tripathi", 2010));
+        bookslist.add(new Book("Secrets Of Nagas", "Amish Tripathi", 2011));
+        bookslist.add(new Book("Pragmatic Programmer", "Andrew Hunt", 1999));
+        bookslist.add(new Book("Let Us Java", "Yashavant Kanetkar", 2012));
     }
 }
