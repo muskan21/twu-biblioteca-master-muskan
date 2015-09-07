@@ -60,13 +60,13 @@ public class MainMenuTest {
 
     @Test
     public void shouldRecursivelyGetInputChoiceForMenuUntilValidIntegerInputIsEntered() {
-        ByteArrayInputStream in = new ByteArrayInputStream("Muskan\n1".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("Muskan\n2".getBytes());
         Scanner scanner = new Scanner(in);
         MainMenu mainMenu = new MainMenu();
 
         int inputChoice = mainMenu.inputMenuChoice(scanner);
 
-        assertEquals(1, inputChoice);
+        assertEquals(2, inputChoice);
     }
 
     @Rule
@@ -74,7 +74,7 @@ public class MainMenuTest {
 
     @Test
     public void shouldExitIfExitOptionNo2IsChosen() {
-        ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("3".getBytes());
         Scanner scanner = new Scanner(in);
         MainMenu mainMenu = new MainMenu();
 

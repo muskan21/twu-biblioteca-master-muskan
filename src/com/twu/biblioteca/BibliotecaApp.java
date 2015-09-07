@@ -30,8 +30,15 @@ public class BibliotecaApp {
             mainMenu.display();
             Scanner scanner = new Scanner(System.in);
             choice = mainMenu.inputMenuChoice(scanner);
-            books.display();
-        }while(choice == 1);
+            if(choice == 1)
+                books.display();
+            else
+                books.CheckOutBook();
+        }while(choice == 1 || choice == 2);
+    }
+
+    public void welcomeMessage(String message) {
+        System.out.println(message);
     }
 
     private static void initializeMainMenu(MainMenu mainMenu) {
@@ -40,14 +47,10 @@ public class BibliotecaApp {
     }
 
     private static void initializeBooksList(ArrayList<Book> bookslist) {
-        bookslist.add(new Book("Gone Girl", "Gillian Flynn", 2012));
-        bookslist.add(new Book("Immortals Of Meluha", "Amish Tripathi", 2010));
-        bookslist.add(new Book("Secrets Of Nagas", "Amish Tripathi", 2011));
-        bookslist.add(new Book("Pragmatic Programmer", "Andrew Hunt", 1999));
-        bookslist.add(new Book("Let Us Java", "Yashavant Kanetkar", 2012));
-    }
-
-    public void welcomeMessage(String message) {
-        System.out.println(message);
+        bookslist.add(new Book(1, "Gone Girl", "Gillian Flynn", 2012));
+        bookslist.add(new Book(2, "Immortals Of Meluha", "Amish Tripathi", 2010));
+        bookslist.add(new Book(3, "Secrets Of Nagas", "Amish Tripathi", 2011));
+        bookslist.add(new Book(4, "Pragmatic Programmer", "Andrew Hunt", 1999));
+        bookslist.add(new Book(5, "Let Us Java", "Yashavant Kanetkar", 2012));
     }
 }
