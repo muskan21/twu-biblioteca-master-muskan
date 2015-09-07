@@ -12,6 +12,7 @@
             <src path="src:test"/>
             <classpath location = "lib/junit-4.11.jar"/>
             <classpath location="lib/mockito-all-1.9.5.jar"/>
+            <classpath location="lib/system-rules-1.12.0.jar"/>
         </javac>
     </target>
 
@@ -20,6 +21,7 @@
             <classpath>
                 <pathelement location="lib/junit-4.11.jar"/>
                 <pathelement location="lib/mockito-all-1.9.5.jar"/>
+                <pathelement location="lib/system-rules-1.12.0.jar"/>
                 <pathelement location="out"/>
             </classpath>
 
@@ -49,6 +51,7 @@
             <classpath>
                 <path location="lib/${project.name}.jar"/>
                 <path location="lib/mockito-all-1.9.5.jar"/>
+                <path location="lib/system-rules-1.12.0.jar"/>
             </classpath>
         </java>
     </target>
