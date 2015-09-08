@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Library {
@@ -35,7 +34,7 @@ public class Library {
         if(available)
             return "Thank You! Enjoy The Book.";
         else
-            return "That Book Is Not Available";
+            return "That Book Is Not Available!";
     }
 
     public String inputCheckedOutBook() {

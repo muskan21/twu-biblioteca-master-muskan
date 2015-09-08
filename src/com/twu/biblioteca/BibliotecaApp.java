@@ -35,7 +35,7 @@ public class BibliotecaApp {
                 books.display();
             else
                 System.out.println(books.CheckOutBook());
-        }while(choice == 1 || choice == 2);
+        }while(true);
     }
 
     public void welcomeMessage(String message) {
