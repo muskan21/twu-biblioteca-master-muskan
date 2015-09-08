@@ -37,13 +37,10 @@ public class MainMenu {
             inputChoice = 0;
         }
         finally {
-            if (inputChoice == 1 || inputChoice == 2) {
-                return inputChoice;
-            }
-            else if(inputChoice == 3) {
+            if(inputChoice == 3) {
                 System.exit(0);
             }
-            else {
+            else if(inputChoice != 1 && inputChoice != 2){
                 System.out.println("Select A Valid Option!!");
             }
         }
