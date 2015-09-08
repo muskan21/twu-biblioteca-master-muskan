@@ -79,7 +79,7 @@ public class LibraryTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Harry Potter".getBytes());
         System.setIn(byteArrayInputStream);
 
-        String checkOutString = library.CheckOutBook();
+        String checkOutString = library.checkOutBook();
 
         ArrayList<Book> books1 = new ArrayList<Book>();
         books1.add(new Book("Gone Girl", "Gillian Flynn", 2012));
@@ -99,7 +99,7 @@ public class LibraryTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Bleh Book".getBytes());
         System.setIn(byteArrayInputStream);
 
-        String checkOutFlag = library.CheckOutBook();
+        String checkOutFlag = library.checkOutBook();
 
         ArrayList<Book> books1 = new ArrayList<Book>();
         books1.add(new Book("Gone Girl", "Gillian Flynn", 2012));
@@ -111,55 +111,55 @@ public class LibraryTest {
 
     @Test
     public void shouldBeEqualWhenComparingABookListToItself() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
-        books.add(Book);
+        books.add(book);
         Library library = new Library(books);
         assertEquals(library, library);
     }
 
     @Test
     public void shouldBeEqualWhenComparingABookListToAnotherBookListWithSameBooks() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
         ArrayList<Book> books = new ArrayList<Book>();
-        books.add(Book);
+        books.add(book);
         Library library = new Library(books);
-        Book Book1 = new Book("Christmas Carol", "Charles", 1843);
+        Book book1 = new Book("Christmas Carol", "Charles", 1843);
         ArrayList<Book> books1 = new ArrayList<Book>();
-        books1.add(Book1);
+        books1.add(book1);
         Library library1 = new Library(books1);
         assertEquals(library, library1);
     }
 
     @Test
     public void shouldBeEqualWhenComparingABookListToAnotherBookListWithSameNameBooksIgnoringTheCase() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
         ArrayList<Book> books = new ArrayList<Book>();
-        books.add(Book);
+        books.add(book);
         Library library = new Library(books);
-        Book Book1 = new Book("christmas carol", "Charles", 1843);
+        Book book1 = new Book("christmas carol", "Charles", 1843);
         ArrayList<Book> books1 = new ArrayList<Book>();
-        books1.add(Book1);
+        books1.add(book1);
         Library library1 = new Library(books1);
         assertEquals(library, library1);
     }
 
     @Test
     public void shouldNotBeEqualWhenComparingABookListToNull() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
         ArrayList<Book> books = new ArrayList<Book>();
-        books.add(Book);
+        books.add(book);
         Library library = new Library(books);
         assertNotEquals(library, null);
     }
 
     @Test
     public void shouldNotBeEqualWhenComparingABookListToNonBookListEntity() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
         ArrayList<Book> books = new ArrayList<Book>();
-        books.add(Book);
+        books.add(book);
         Library library = new Library(books);
         assertNotEquals(library, "I am Not a Book");
     }
@@ -179,9 +179,9 @@ public class LibraryTest {
 
     @Test
     public void shouldHaveSameHashCodeComparingABookListToItself() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
         ArrayList<Book> books = new ArrayList<Book>();
-        books.add(Book);
+        books.add(book);
         Library library = new Library(books);
         assertEquals(library.hashCode(), library.hashCode());
     }

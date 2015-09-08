@@ -23,32 +23,34 @@ public class BookTest {
 
     @Test
     public void shouldBeEqualWhenComparingABookToItself() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
-        assertEquals(Book, Book);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        assertEquals(book, book);
     }
 
     @Test
     public void shouldBeEqualWhenComparingABookToAnotherBookWithSameName() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
-        Book Book1 = new Book("Christmas Carol", "Charles", 1843);
-        assertEquals(Book, Book1);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        Book book1 = new Book("Christmas Carol", "Charles", 1843);
+        assertEquals(book, book1);
     }
 
     @Test
     public void shouldBeEqualWhenComparingABookToAnotherBookWithSameNameIgnoringTheCase() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
-        Book Book1 = new Book("christmas carol", "Charles", 1843);
-        assertEquals(Book, Book1);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        Book book1 = new Book("christmas carol", "Charles", 1843);
+        assertEquals(book, book1);
     }
 
     @Test
     public void shouldNotBeEqualWhenComparingABookToNull() {
-        assertNotEquals(new Book("Christmas Carol", "Charles Dickens", 1843), null);
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        assertNotEquals(book, null);
     }
 
     @Test
     public void shouldNotBeEqualWhenComparingABookToNonBookEntity() {
-        assertNotEquals(new Book("Christmas Carol", "Charles Dickens", 1843), "I am Not a Book");
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        assertNotEquals(book, "I am Not a Book");
     }
 
     @Test
@@ -60,8 +62,8 @@ public class BookTest {
 
     @Test
     public void shouldHaveSameHashCodeComparingABookToItself() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
-        assertEquals(Book.hashCode(), Book.hashCode());
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        assertEquals(book.hashCode(), book.hashCode());
     }
 
     @Test
@@ -73,8 +75,8 @@ public class BookTest {
 
     @Test
     public void shouldHaveSameHashCodeWhenComparingABookToAnotherBookWithSameNameIgnoringTheCase() {
-        Book Book = new Book("Christmas Carol", "Charles Dickens", 1843);
-        Book Book1 = new Book("christmas carol", "Charles", 1843);
-        assertEquals(Book.hashCode(), Book1.hashCode());
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        Book book1 = new Book("christmas carol", "Charles", 1843);
+        assertEquals(book.hashCode(), book1.hashCode());
     }
 }

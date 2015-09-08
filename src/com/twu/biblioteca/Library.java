@@ -28,7 +28,7 @@ public class Library {
         return availableBookList.size();
     }
 
-    public String CheckOutBook() {
+    public String checkOutBook() {
         String checkedOutBook = inputCheckedOutBook();
         boolean available = checkAvailabilityForCheckOut(checkedOutBook);
         if(available)
