@@ -27,13 +27,14 @@ public class BibliotecaApp {
         welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         int choice;
         do {
+            System.out.println();
             mainMenu.display();
             Scanner scanner = new Scanner(System.in);
             choice = mainMenu.inputMenuChoice(scanner);
             if(choice == 1)
                 books.display();
             else
-                books.CheckOutBook();
+                System.out.println(books.CheckOutBook());
         }while(choice == 1 || choice == 2);
     }
 
@@ -43,6 +44,7 @@ public class BibliotecaApp {
 
     private static void initializeMainMenu(MainMenu mainMenu) {
         mainMenu.addOption("List Books.");
+        mainMenu.addOption("Check Out Book.");
         mainMenu.addOption("Exit.");
     }
 

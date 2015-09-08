@@ -79,13 +79,32 @@ public class LibraryTest {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Harry Potter".getBytes());
         System.setIn(byteArrayInputStream);
 
-        boolean checkOutFlag = library.CheckOutBook();
+        String checkOutString = library.CheckOutBook();
 
         ArrayList<Book> books1 = new ArrayList<Book>();
         books1.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         ArrayList<Book> books2 = new ArrayList<Book>();
         books2.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         Library library1 = new Library(books1, books2);
+
+        assertEquals(library, library1);
+    }
+
+    @Test
+    public void listOfAvailableBooksRemainsSameIfBookNotCheckedOut() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+        Library library = new Library(books);
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Bleh Book".getBytes());
+        System.setIn(byteArrayInputStream);
+
+        String checkOutFlag = library.CheckOutBook();
+
+        ArrayList<Book> books1 = new ArrayList<Book>();
+        books1.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        books1.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+        Library library1 = new Library(books1);
 
         assertEquals(library, library1);
     }

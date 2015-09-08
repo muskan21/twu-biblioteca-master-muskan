@@ -29,13 +29,17 @@ public class Library {
         return availableBookList.size();
     }
 
-    public boolean CheckOutBook() {
+    public String CheckOutBook() {
         String checkedOutBook = inputCheckedOutBook();
         boolean available = checkAvailabilityForCheckOut(checkedOutBook);
-        return available;
+        if(available)
+            return "Thank You! Enjoy The Book.";
+        else
+            return "That Book Is Not Available";
     }
 
     public String inputCheckedOutBook() {
+        System.out.println("Enter The Name Of The Book To Check Out : ");
         Scanner scanner = new Scanner(System.in);
         String bookName = "";
         bookName = scanner.nextLine();
