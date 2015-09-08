@@ -15,7 +15,7 @@ public class LibraryTest {
     @Test
     public void initializeBooksShouldAddTheBooksToTheList() {
         ArrayList<Book> books = new ArrayList<Book>();
-        books.add(new Book("Gone girl","Gyllian Flynn", 2012));
+        books.add(new Book("Gone girl", "Gyllian Flynn", 2012));
         Library library = new Library(books);
 
         assertEquals(1, library.size());
@@ -33,19 +33,6 @@ public class LibraryTest {
 
         assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", out.toString());
         System.setOut(System.out);
-    }
-
-    @Test
-    public void shouldInputBookToBeCheckedOut() {
-        ArrayList<Book> books = new ArrayList<Book>();
-        books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
-        Library library = new Library(books);
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Gone Girl".getBytes());
-        System.setIn(byteArrayInputStream);
-
-        String checkedOutBook = library.inputCheckedOutBook();
-
-        assertEquals("Gone Girl", checkedOutBook);
     }
 
     @Test
@@ -76,15 +63,13 @@ public class LibraryTest {
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         Library library = new Library(books);
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Harry Potter".getBytes());
-        System.setIn(byteArrayInputStream);
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
         library.display();
 
         System.setOut(System.out);
-        library.checkOutBook();
+        library.checkOutBook("Harry Potter");
 
         ArrayList<Book> books1 = new ArrayList<Book>();
         books1.add(new Book("Gone Girl", "Gillian Flynn", 2012));
@@ -102,15 +87,13 @@ public class LibraryTest {
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         Library library = new Library(books);
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream("Bleh Book".getBytes());
-        System.setIn(byteArrayInputStream);
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream));
         library.display();
 
         System.setOut(System.out);
-        library.checkOutBook();
+        library.checkOutBook("Bleh Book");
 
         ArrayList<Book> books1 = new ArrayList<Book>();
         books1.add(new Book("Gone Girl", "Gillian Flynn", 2012));

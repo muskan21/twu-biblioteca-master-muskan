@@ -38,35 +38,29 @@ public class MainMenuTest {
 
     @Test
     public void shouldGetInputChoiceForMenu() {
-        ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
-        Scanner scanner = new Scanner(in);
         MainMenu mainMenu = new MainMenu();
 
-        int inputChoice = mainMenu.inputMenuChoice(scanner);
+        int inputChoice = mainMenu.validateInputMenuChoice("1");
 
         assertEquals(1, inputChoice);
     }
 
     @Test
     public void shouldRecursivelyGetInputChoiceForMenuUntilValidInputIsEntered() {
-        ByteArrayInputStream in = new ByteArrayInputStream("5\n1".getBytes());
-        Scanner scanner = new Scanner(in);
         MainMenu mainMenu = new MainMenu();
 
-        int inputChoice = mainMenu.inputMenuChoice(scanner);
+        int inputChoice = mainMenu.validateInputMenuChoice("5");
 
-        assertEquals(1, inputChoice);
+        assertEquals(5, inputChoice);
     }
 
     @Test
     public void shouldRecursivelyGetInputChoiceForMenuUntilValidIntegerInputIsEntered() {
-        ByteArrayInputStream in = new ByteArrayInputStream("Muskan\n2".getBytes());
-        Scanner scanner = new Scanner(in);
         MainMenu mainMenu = new MainMenu();
 
-        int inputChoice = mainMenu.inputMenuChoice(scanner);
+        int inputChoice = mainMenu.validateInputMenuChoice("Muskan");
 
-        assertEquals(2, inputChoice);
+        assertEquals(0, inputChoice);
     }
 
     @Rule
@@ -74,12 +68,10 @@ public class MainMenuTest {
 
     @Test
     public void shouldExitIfExitOptionNo2IsChosen() {
-        ByteArrayInputStream in = new ByteArrayInputStream("3".getBytes());
-        Scanner scanner = new Scanner(in);
         MainMenu mainMenu = new MainMenu();
 
         exit.expectSystemExit();
 
-        int inputChoice = mainMenu.inputMenuChoice(scanner);
+        mainMenu.validateInputMenuChoice("3");
     }
 }

@@ -6,10 +6,12 @@ import java.util.Scanner;
 public class BibliotecaApp {
     private Library books;
     private MainMenu mainMenu;
+    private InputConsole inputConsole;
 
     public BibliotecaApp(Library books, MainMenu mainMenu) {
         this.books = books;
         this.mainMenu = mainMenu;
+        this.inputConsole = new InputConsole();
     }
 
     public static void main(String[] args) {
@@ -29,12 +31,15 @@ public class BibliotecaApp {
         do {
             System.out.println();
             mainMenu.display();
-            Scanner scanner = new Scanner(System.in);
-            choice = mainMenu.inputMenuChoice(scanner);
+            String input = inputConsole.getInput();
+            choice = mainMenu.validateInputMenuChoice(input);
             if(choice == 1)
                 books.display();
-            else
-                System.out.println(books.checkOutBook());
+            else if(choice == 2) {
+                System.out.println("Enter The Name Of The Book To Check Out : ");
+                String checkedOutBook = inputConsole.getInput();
+                System.out.println(books.checkOutBook(checkedOutBook));
+            }
         }while(true);
     }
 

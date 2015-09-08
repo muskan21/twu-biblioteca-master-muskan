@@ -29,28 +29,24 @@ public class MainMenu {
         System.out.println("Enter Your Choice : ");
     }
 
-    public int inputMenuChoice(Scanner read) {
-        Scanner scanner = read;
-        String input;
+    public int validateInputMenuChoice(String input) {
         int inputChoice = 0;
-        do {
-            input = scanner.nextLine();
-            try {
-                inputChoice = Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                inputChoice = 0;
+        try {
+            inputChoice = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            inputChoice = 0;
+        }
+        finally {
+            if (inputChoice == 1 || inputChoice == 2) {
+                return inputChoice;
             }
-            finally {
-                if (inputChoice == 1 || inputChoice == 2) {
-                    return inputChoice;
-                } else if(inputChoice == 3) {
-                    System.exit(0);
-                }
-                else {
-                    System.out.println("Select A Valid Option!!");
-                }
+            else if(inputChoice == 3) {
+                System.exit(0);
             }
-        } while(inputChoice != 1 || inputChoice != 2);
+            else {
+                System.out.println("Select A Valid Option!!");
+            }
+        }
         return inputChoice;
     }
 }
