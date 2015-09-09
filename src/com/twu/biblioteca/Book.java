@@ -4,17 +4,20 @@ public class Book {
     private String bookName;
     private String bookAuthor;
     private int yearPublished;
+    private boolean isCheckedOut;
 
     public Book(String bookName, String bookAuthor, int yearPublished) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.yearPublished = yearPublished;
+        this.isCheckedOut = false;
     }
 
     public Book(String bookName) {
         this.bookName = bookName;
         this.bookAuthor = "";
         this.yearPublished = 0;
+        this.isCheckedOut = false;
     }
 
     public void display() {
@@ -34,5 +37,13 @@ public class Book {
     @Override
     public int hashCode() {
         return bookName.toLowerCase().hashCode();
+    }
+
+    public boolean checkOutStatus() {
+        return isCheckedOut;
+    }
+
+    public void checkOutBook() {
+        isCheckedOut = true;
     }
 }

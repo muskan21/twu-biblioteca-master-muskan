@@ -13,15 +13,6 @@ import static org.junit.Assert.assertNotEquals;
 public class LibraryTest {
 
     @Test
-    public void initializeBooksShouldAddTheBooksToTheList() {
-        ArrayList<Book> books = new ArrayList<Book>();
-        books.add(new Book("Gone girl", "Gyllian Flynn", 2012));
-        Library library = new Library(books);
-
-        assertEquals(1, library.size());
-    }
-
-    @Test
     public void shouldPrintTheListOfBooksOnConsole() {
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("Gone Girl","Gillian Flynn", 2012));
@@ -36,14 +27,30 @@ public class LibraryTest {
     }
 
     @Test
+    public void shouldNotPrintTheBooksOnConsoleWhichHaveBeenCheckedOut() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Gone Girl","Gillian Flynn", 2012));
+        books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+        Library library = new Library(books);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        library.checkOutBook("Harry Potter");
+        library.display();
+
+        assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", out.toString());
+        System.setOut(System.out);
+    }
+
+    @Test
     public void shouldValidateIfCheckedOutBookIsActuallyAvailable() {
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         Library library = new Library(books);
 
-        boolean available = library.checkAvailabilityForCheckOut("Gone girl");
+        String available = library.checkOutBook("Gone girl");
 
-        assertTrue(available);
+        assertEquals("Thank You! Enjoy The Book.", available);
     }
 
     @Test
@@ -52,9 +59,9 @@ public class LibraryTest {
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         Library library = new Library(books);
 
-        boolean available = library.checkAvailabilityForCheckOut("Harry potter");
+        String available = library.checkOutBook("Harry potter");
 
-        assertFalse(available);
+        assertEquals("That Book Is Not Available!", available);
     }
 
     @Test
@@ -71,12 +78,9 @@ public class LibraryTest {
         System.setOut(System.out);
         library.checkOutBook("Harry Potter");
 
-        ArrayList<Book> books1 = new ArrayList<Book>();
-        books1.add(new Book("Gone Girl", "Gillian Flynn", 2012));
-        Library library1 = new Library(books1);
         ByteArrayOutputStream byteArrayOutputStream1 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream1));
-        library1.display();
+        library.display();
 
         assertNotEquals(byteArrayOutputStream.toString(), byteArrayOutputStream1.toString());
     }
@@ -95,13 +99,9 @@ public class LibraryTest {
         System.setOut(System.out);
         library.checkOutBook("Bleh Book");
 
-        ArrayList<Book> books1 = new ArrayList<Book>();
-        books1.add(new Book("Gone Girl", "Gillian Flynn", 2012));
-        books1.add(new Book("Harry Potter", "J.K. Rowling", 2000));
-        Library library1 = new Library(books1);
         ByteArrayOutputStream byteArrayOutputStream1 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(byteArrayOutputStream1));
-        library1.display();
+        library.display();
 
         assertEquals(byteArrayOutputStream.toString(), byteArrayOutputStream1.toString());
 

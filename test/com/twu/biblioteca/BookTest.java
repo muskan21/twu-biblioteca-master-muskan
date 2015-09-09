@@ -79,4 +79,17 @@ public class BookTest {
         Book book1 = new Book("christmas carol", "Charles", 1843);
         assertEquals(book.hashCode(), book1.hashCode());
     }
+
+    @Test
+    public void shouldReturnFalseInitiallySinceBookIsNotCheckedOut() {
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        assertFalse(book.checkOutStatus());
+    }
+
+    @Test
+    public void shouldReturnTrueIfBookIsCheckedOut() {
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        book.checkOutBook();
+        assertTrue(book.checkOutStatus());
+    }
 }
