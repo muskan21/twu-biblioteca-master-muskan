@@ -1,4 +1,5 @@
 /out/
 /.idea
-/biblioteca.iml
+/*.iml
 /.DS_Store
+/*.jar

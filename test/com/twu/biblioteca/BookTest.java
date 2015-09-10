@@ -92,4 +92,11 @@ public class BookTest {
         book.checkOutBook();
         assertTrue(book.checkOutStatus());
     }
+
+    @Test
+    public void shouldReturnFalseIfBookIsReturned() {
+        Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
+        book.returnBook();
+        assertFalse(book.checkOutStatus());
+    }
 }

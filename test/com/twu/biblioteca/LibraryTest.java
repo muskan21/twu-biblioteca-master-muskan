@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Mockito.mock;
 
 public class LibraryTest {
 
@@ -107,5 +108,33 @@ public class LibraryTest {
 
         System.setOut(System.out);
         System.setIn(System.in);
+    }
+
+    @Test
+    public void hasTheNewListOfAvailableBooksIfValidBookIsReturned() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+        Library library = new Library(books);
+
+        library.checkOutBook("Gone girl");
+        String returnString = library.returnBook("Gone girl");
+
+        assertEquals("Thank You for returning the book.", returnString);
+        System.setOut(System.out);
+    }
+
+    @Test
+    public void doesNotHaveTheNewListOfAvailableBooksIfInvalidBookIsReturned() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+        Library library = new Library(books);
+
+        library.checkOutBook("Harry Potter");
+        String returnString = library.returnBook("Harry");
+
+        assertEquals("That is not a valid book to return", returnString);
+        System.setOut(System.out);
     }
 }

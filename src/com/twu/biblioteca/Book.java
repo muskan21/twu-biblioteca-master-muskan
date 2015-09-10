@@ -46,4 +46,8 @@ public class Book {
     public void checkOutBook() {
         isCheckedOut = true;
     }
+
+    public void returnBook() {
+        isCheckedOut = false;
+    }
 }

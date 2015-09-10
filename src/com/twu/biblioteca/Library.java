@@ -25,11 +25,28 @@ public class Library {
             if(book.equals(bookToCheckOut) && !(book.checkOutStatus())) {
                 book.checkOutBook();
                 checkOutFlag = true;
+                break;
             }
         }
         if(checkOutFlag)
             return "Thank You! Enjoy The Book.";
         else
             return "That Book Is Not Available!";
+    }
+
+    public String returnBook(String bookName) {
+        Book returnedBook = new Book(bookName);
+        boolean returnFlag = false;
+        for(Book book : bookList) {
+            if(book.equals(returnedBook)) {
+                book.returnBook();
+                returnFlag = true;
+                break;
+            }
+        }
+        if(returnFlag)
+            return "Thank You for returning the book.";
+        else
+            return "That is not a valid book to return";
     }
 }
