@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -34,10 +33,10 @@ public class BibliotecaAppTest {
     @Test
     public void shouldPrintTheWelcomeMessageOnConsole() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(new Library(new ArrayList<Book>()), new MainMenu(), new Interpreter(new Library(new ArrayList<Book>()), new InputConsole()));
+        PrintStream printStream = new PrintStream(out);
+        OutputConsole outputConsole = new OutputConsole(printStream);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(new Library(new ArrayList<Book>()), new MainMenu(), new Interpreter(new Library(new ArrayList<Book>()), new InputConsole()), outputConsole);
         bibliotecaApp.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         assertEquals("Welcome To Biblioteca Library Management System.\nHappy To Help.\n", out.toString());
-        System.setOut(System.out);
     }
 }
