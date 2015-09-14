@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MainMenu {
     private ArrayList<String> options;
@@ -21,11 +20,12 @@ public class MainMenu {
         return noOfOptions;
     }
 
-    public void display() {
-        System.out.println("Main Menu : ");
+    public String formattedMenu() {
+        String menuDetails = String.format("Main Menu : \n");
         for (String option: options) {
-            System.out.println(option);
+            menuDetails += option+"\n";
         }
-        System.out.println("Enter Your Choice : ");
+        menuDetails += "Enter Your Choice : \n";
+        return menuDetails;
     }
 }

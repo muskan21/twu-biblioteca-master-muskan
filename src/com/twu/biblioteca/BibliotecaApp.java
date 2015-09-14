@@ -35,7 +35,7 @@ public class BibliotecaApp {
         welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         do {
             out.display("");
-            mainMenu.display();
+            out.display(mainMenu.formattedMenu());
             String input = inputConsole.getInput();
             interpreter.interpret(input);
         }while(true);

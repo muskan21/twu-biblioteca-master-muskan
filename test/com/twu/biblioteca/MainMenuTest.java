@@ -1,13 +1,6 @@
 package com.twu.biblioteca;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.ExpectedSystemExit;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,14 +18,10 @@ public class MainMenuTest {
     @Test
     public void shouldPrintTheOptionsOnConsole() {
         MainMenu mainMenu = new MainMenu();
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
 
         mainMenu.addOption("List Books.");
-        mainMenu.display();
+        String menu = mainMenu.formattedMenu();
 
-        assertEquals("Main Menu : \n1. List Books.\nEnter Your Choice : \n", out.toString());
-        System.setOut(System.out);
-
+        assertEquals("Main Menu : \n1. List Books.\nEnter Your Choice : \n", menu);
     }
 }
