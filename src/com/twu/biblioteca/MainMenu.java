@@ -28,22 +28,4 @@ public class MainMenu {
         }
         System.out.println("Enter Your Choice : ");
     }
-
-    public int validateInputMenuChoice(String input) {
-        int inputChoice = 0;
-        try {
-            inputChoice = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            inputChoice = 0;
-        }
-        finally {
-            if(inputChoice == 3) {
-                System.exit(0);
-            }
-            else if(inputChoice != 1 && inputChoice != 2){
-                System.out.println("Select A Valid Option!!");
-            }
-        }
-        return inputChoice;
-    }
 }

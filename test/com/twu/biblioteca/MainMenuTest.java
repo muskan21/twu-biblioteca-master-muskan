@@ -35,43 +35,4 @@ public class MainMenuTest {
         System.setOut(System.out);
 
     }
-
-    @Test
-    public void shouldGetInputChoiceForMenu() {
-        MainMenu mainMenu = new MainMenu();
-
-        int inputChoice = mainMenu.validateInputMenuChoice("1");
-
-        assertEquals(1, inputChoice);
-    }
-
-    @Test
-    public void shouldRecursivelyGetInputChoiceForMenuUntilValidInputIsEntered() {
-        MainMenu mainMenu = new MainMenu();
-
-        int inputChoice = mainMenu.validateInputMenuChoice("5");
-
-        assertEquals(5, inputChoice);
-    }
-
-    @Test
-    public void shouldRecursivelyGetInputChoiceForMenuUntilValidIntegerInputIsEntered() {
-        MainMenu mainMenu = new MainMenu();
-
-        int inputChoice = mainMenu.validateInputMenuChoice("Muskan");
-
-        assertEquals(0, inputChoice);
-    }
-
-    @Rule
-    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
-
-    @Test
-    public void shouldExitIfExitOptionNo2IsChosen() {
-        MainMenu mainMenu = new MainMenu();
-
-        exit.expectSystemExit();
-
-        mainMenu.validateInputMenuChoice("3");
-    }
 }

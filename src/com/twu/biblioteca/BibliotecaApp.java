@@ -7,11 +7,13 @@ public class BibliotecaApp {
     private Library books;
     private MainMenu mainMenu;
     private InputConsole inputConsole;
+    private Interpreter interpreter;
 
-    public BibliotecaApp(Library books, MainMenu mainMenu) {
+    public BibliotecaApp(Library books, MainMenu mainMenu, Interpreter interpreter) {
         this.books = books;
         this.mainMenu = mainMenu;
         this.inputConsole = new InputConsole();
+        this.interpreter = interpreter;
     }
 
     public static void main(String[] args) {
@@ -21,25 +23,18 @@ public class BibliotecaApp {
         Library books = new Library(bookslist);
         MainMenu mainMenu = new MainMenu();
         initializeMainMenu(mainMenu);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(books, mainMenu);
+        Interpreter interpreter = new Interpreter(books, new InputConsole());
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(books, mainMenu, interpreter);
         bibliotecaApp.start();
     }
 
     public void start() {
         welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
-        int choice;
         do {
             System.out.println();
             mainMenu.display();
             String input = inputConsole.getInput();
-            choice = mainMenu.validateInputMenuChoice(input);
-            if(choice == 1)
-                books.display();
-            else if(choice == 2) {
-                System.out.println("Enter The Name Of The Book To Check Out : ");
-                String checkedOutBook = inputConsole.getInput();
-                System.out.println(books.checkOutBook(checkedOutBook));
-            }
+            interpreter.interpret(input);
         }while(true);
     }
 

@@ -1,15 +1,12 @@
 package com.twu.biblioteca;
 
 import org.junit.Test;
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotEquals;
-import static org.mockito.Mockito.mock;
 
 public class LibraryTest {
 

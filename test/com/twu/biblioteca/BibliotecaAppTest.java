@@ -35,7 +35,7 @@ public class BibliotecaAppTest {
     public void shouldPrintTheWelcomeMessageOnConsole() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(new Library(new ArrayList<Book>()), new MainMenu());
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(new Library(new ArrayList<Book>()), new MainMenu(), new Interpreter(new Library(new ArrayList<Book>()), new InputConsole()));
         bibliotecaApp.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         assertEquals("Welcome To Biblioteca Library Management System.\nHappy To Help.\n", out.toString());
         System.setOut(System.out);
