@@ -3,7 +3,6 @@ package com.twu.biblioteca;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class InterpreterTest {
 
     @Test
     public void shouldExitIfExitOptionIsChosen() {
-        Interpreter interpreter = new Interpreter(new Library(new ArrayList<Book>()), new InputConsole());
+        Interpreter interpreter = new Interpreter(new Library(new ArrayList<Book>()), new InputConsole(), new OutputConsole(new PrintStream(System.out)));
 
         exit.expectSystemExit();
 
@@ -27,18 +26,18 @@ public class InterpreterTest {
     @Test
     public void shouldInvokeDisplayMethodCallForTheSelectedOption() {
         Library library = mock(Library.class);
-        Interpreter interpreter = new Interpreter(library, new InputConsole());
+        Interpreter interpreter = new Interpreter(library, new InputConsole(), new OutputConsole(new PrintStream(System.out)));
 
         interpreter.interpret("1");
 
-        verify(library, times(1)).display();
+        verify(library, times(1)).formattedListOfAvailableBooks();
     }
 
     @Test
     public void shouldInvokeCheckOutMethodCallForTheSelectedOption() {
         Library library = mock(Library.class);
         InputConsole inputConsole = mock(InputConsole.class);
-        Interpreter interpreter = new Interpreter(library, inputConsole);
+        Interpreter interpreter = new Interpreter(library, inputConsole, new OutputConsole(new PrintStream(System.out)));
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -51,7 +50,7 @@ public class InterpreterTest {
     public void shouldInvokeReturnMethodCallForTheSelectedOption() {
         Library library = mock(Library.class);
         InputConsole inputConsole = mock(InputConsole.class);
-        Interpreter interpreter = new Interpreter(library, inputConsole);
+        Interpreter interpreter = new Interpreter(library, inputConsole, new OutputConsole(new PrintStream(System.out)));
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -65,12 +64,12 @@ public class InterpreterTest {
         ArrayList<Book> books = new ArrayList<Book>();
         Library library = new Library(books);
         InputConsole inputConsole = new InputConsole();
-        Interpreter interpreter = new Interpreter(library, inputConsole);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        OutputConsole out = new OutputConsole(new PrintStream(output));
+        Interpreter interpreter = new Interpreter(library, inputConsole, out);
 
         interpreter.interpret("Muskan");
 
-        assertEquals("Select A Valid Option!!\n", out.toString());
+        assertEquals("Select A Valid Option!!\n", output.toString());
     }
 }

@@ -3,31 +3,33 @@ package com.twu.biblioteca;
 public class Interpreter {
     Library books;
     InputConsole inputConsole;
+    OutputConsole out;
 
-    public Interpreter(Library books, InputConsole inputConsole) {
+    public Interpreter(Library books, InputConsole inputConsole, OutputConsole out) {
         this.books = books;
         this.inputConsole = inputConsole;
+        this.out = out;
     }
 
     public void interpret(String inputChoice) {
         switch (inputChoice) {
             case "1":
-                books.display();
+                out.display(books.formattedListOfAvailableBooks());
                 break;
             case "2":
-                System.out.println("Enter The Name Of The Book To Check Out : ");
+                out.display("Enter The Name Of The Book To Check Out : ");
                 String checkedOutBook = inputConsole.getInput();
-                System.out.println(books.checkOutBook(checkedOutBook));
+                out.display(books.checkOutBook(checkedOutBook));
                 break;
             case "3":
-                System.out.println("Enter The Name Of The Book To Return : ");
+                out.display("Enter The Name Of The Book To Return : ");
                 String returnBook = inputConsole.getInput();
-                System.out.println(books.returnBook(returnBook));
+                out.display(books.returnBook(returnBook));
                 break;
             case "4":
                 System.exit(0);
             default:
-                System.out.println("Select A Valid Option!!");
+                out.display("Select A Valid Option!!");
         }
     }
 }

@@ -25,8 +25,8 @@ public class BibliotecaApp {
         Library books = new Library(bookslist);
         MainMenu mainMenu = new MainMenu();
         initializeMainMenu(mainMenu);
-        Interpreter interpreter = new Interpreter(books, new InputConsole());
         OutputConsole out = new OutputConsole(new PrintStream(System.out));
+        Interpreter interpreter = new Interpreter(books, new InputConsole(), out);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(books, mainMenu, interpreter, out);
         bibliotecaApp.start();
     }

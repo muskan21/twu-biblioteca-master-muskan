@@ -20,8 +20,8 @@ public class Book {
         this.isCheckedOut = false;
     }
 
-    public void display() {
-        System.out.printf("%-30s %-30s %-30s\n", bookName, bookAuthor, yearPublished);
+    public String formattedBookDetails() {
+        return String.format("%-30s %-30s %-30s\n", bookName, bookAuthor, yearPublished);
     }
 
     @Override

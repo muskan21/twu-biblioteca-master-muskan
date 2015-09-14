@@ -12,13 +12,10 @@ public class BookTest {
     @Test
     public void displayShouldPrintTheGivenBookObject() {
         Book book = new Book("Christmas Carol", "Charles Dickens", 1843);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
 
-        book.display();
+        String bookDetails = book.formattedBookDetails();
 
-        assertEquals("Christmas Carol                Charles Dickens                1843                          \n", out.toString());
-        System.setOut(System.out);
+        assertEquals("Christmas Carol                Charles Dickens                1843                          \n", bookDetails);
     }
 
     @Test

@@ -13,15 +13,12 @@ public class LibraryTest {
     @Test
     public void shouldPrintTheListOfBooksOnConsole() {
         ArrayList<Book> books = new ArrayList<Book>();
-        books.add(new Book("Gone Girl","Gillian Flynn", 2012));
+        books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         Library library = new Library(books);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
 
-        library.display();
+        String booklistDetails = library.formattedListOfAvailableBooks();
 
-        assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", out.toString());
-        System.setOut(System.out);
+        assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", booklistDetails);
     }
 
     @Test
@@ -30,13 +27,11 @@ public class LibraryTest {
         books.add(new Book("Gone Girl","Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         Library library = new Library(books);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
 
         library.checkOutBook("Harry Potter");
-        library.display();
+        String booklistDetails = library.formattedListOfAvailableBooks();
 
-        assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", out.toString());
+        assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", booklistDetails);
         System.setOut(System.out);
     }
 
@@ -69,18 +64,12 @@ public class LibraryTest {
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         Library library = new Library(books);
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        library.display();
+        String booklistDetails = library.formattedListOfAvailableBooks();
 
-        System.setOut(System.out);
         library.checkOutBook("Harry Potter");
+        String booklistDetail = library.formattedListOfAvailableBooks();
 
-        ByteArrayOutputStream byteArrayOutputStream1 = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream1));
-        library.display();
-
-        assertNotEquals(byteArrayOutputStream.toString(), byteArrayOutputStream1.toString());
+        assertNotEquals(booklistDetails, booklistDetail);
     }
 
     @Test
@@ -90,21 +79,12 @@ public class LibraryTest {
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         Library library = new Library(books);
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        library.display();
+        String listDetails = library.formattedListOfAvailableBooks();
 
-        System.setOut(System.out);
         library.checkOutBook("Bleh Book");
+        String listDetail = library.formattedListOfAvailableBooks();
 
-        ByteArrayOutputStream byteArrayOutputStream1 = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream1));
-        library.display();
-
-        assertEquals(byteArrayOutputStream.toString(), byteArrayOutputStream1.toString());
-
-        System.setOut(System.out);
-        System.setIn(System.in);
+        assertEquals(listDetails, listDetail);
     }
 
     @Test

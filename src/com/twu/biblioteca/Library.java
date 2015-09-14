@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Library {
     private ArrayList<Book> bookList;
@@ -10,12 +9,14 @@ public class Library {
         this.bookList = bookList;
     }
 
-    public void display() {
-        System.out.printf("%-30s %-30s %-30s\n\n","Book Name", "Book Author", "Year Of Publish");
+    public String formattedListOfAvailableBooks() {
+        String booksList = String.format("%-30s %-30s %-30s\n\n", "Book Name", "Book Author", "Year Of Publish");
         for(Book book : bookList) {
-            if(!book.checkOutStatus())
-                book.display();
+            if(!book.checkOutStatus()) {
+                booksList += book.formattedBookDetails();
+            }
         }
+        return booksList;
     }
 
     public String checkOutBook(String checkOutBook) {
