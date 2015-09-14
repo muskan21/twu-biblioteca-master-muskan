@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 
 public class BookLibrary {
+    public static final int UNKNOWN_YEAR_PUBLISHED = 0;
+    public static final String UNKNOWN_BOOK_AUTHOR = "";
     private ArrayList<Book> bookList;
 
     public BookLibrary(ArrayList<Book> bookList) {
@@ -21,7 +23,7 @@ public class BookLibrary {
 
     public String checkOutBook(String checkOutBook) {
         boolean checkOutFlag = false;
-        Book bookToCheckOut = new Book(checkOutBook);
+        Book bookToCheckOut = new Book(checkOutBook, UNKNOWN_BOOK_AUTHOR, UNKNOWN_YEAR_PUBLISHED);
         for(Book book : bookList) {
             if(book.equals(bookToCheckOut) && !(book.checkOutStatus())) {
                 book.checkOutBook();
@@ -36,7 +38,7 @@ public class BookLibrary {
     }
 
     public String returnBook(String bookName) {
-        Book returnedBook = new Book(bookName);
+        Book returnedBook = new Book(bookName, UNKNOWN_BOOK_AUTHOR, UNKNOWN_YEAR_PUBLISHED);
         boolean returnFlag = false;
         for(Book book : bookList) {
             if(book.equals(returnedBook) && book.checkOutStatus()) {

@@ -72,4 +72,20 @@
         </junit>
         <cobertura-report format="xml" destdir="out/reports/cobertura" datafile="out/cobertura.ser" srcdir="src" />
     </target>
+
+    <target name="buildJar" depends="compile.sources">
+        <jar destfile="lib/TWU_Biblioteca-master-Muskan.jar" basedir="out/classes" excludes="**/*Test*.class">
+            <manifest>
+                <attribute name="Main-Class" value="com.twu.biblioteca.BibliotecaApp"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="buildJar">
+        <java fork="true" failonerror="yes" classname="com.twu.biblioteca.BibliotecaApp">
+            <classpath>
+                <path location="lib/TWU_Biblioteca-master-Muskan.jar"/>
+            </classpath>
+        </java>
+    </target>
 </project>

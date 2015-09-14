@@ -13,13 +13,6 @@ public class Book {
         this.isCheckedOut = false;
     }
 
-    public Book(String bookName) {
-        this.bookName = bookName;
-        this.bookAuthor = "";
-        this.yearPublished = 0;
-        this.isCheckedOut = false;
-    }
-
     public String formattedBookDetails() {
         return String.format("%-30s %-30s %-30s\n", bookName, bookAuthor, yearPublished);
     }
