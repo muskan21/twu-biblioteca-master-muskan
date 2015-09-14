@@ -4,14 +4,12 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class BibliotecaApp {
-    private Library books;
     private MainMenu mainMenu;
     private InputConsole inputConsole;
     private Interpreter interpreter;
     private OutputConsole out;
 
-    public BibliotecaApp(Library books, MainMenu mainMenu, Interpreter interpreter, OutputConsole outputConsole) {
-        this.books = books;
+    public BibliotecaApp(MainMenu mainMenu, Interpreter interpreter, OutputConsole outputConsole) {
         this.mainMenu = mainMenu;
         this.inputConsole = new InputConsole();
         this.interpreter = interpreter;
@@ -27,7 +25,7 @@ public class BibliotecaApp {
         initializeMainMenu(mainMenu);
         OutputConsole out = new OutputConsole(new PrintStream(System.out));
         Interpreter interpreter = new Interpreter(books, new InputConsole(), out);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(books, mainMenu, interpreter, out);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(mainMenu, interpreter, out);
         bibliotecaApp.start();
     }
 
