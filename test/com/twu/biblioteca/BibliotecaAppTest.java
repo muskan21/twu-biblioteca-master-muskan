@@ -4,9 +4,7 @@ package com.twu.biblioteca;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
-import org.mockito.Mockito;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ public class BibliotecaAppTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(out);
         OutputConsole outputConsole = new OutputConsole(printStream);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(new MainMenu(), new InputConsole(new Scanner(System.in)), new Interpreter(new Library(new ArrayList<Book>()), new InputConsole(new Scanner(System.in)), outputConsole), outputConsole);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(new MainMenu(), new InputConsole(new Scanner(System.in)), new Interpreter(new BookLibrary(new ArrayList<Book>()), new InputConsole(new Scanner(System.in)), outputConsole), outputConsole);
         bibliotecaApp.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         assertEquals("Welcome To Biblioteca Library Management System.\nHappy To Help.\n", out.toString());
     }
@@ -52,8 +50,8 @@ public class BibliotecaAppTest {
         OutputConsole outputConsole = new OutputConsole(new PrintStream(System.out));
         InputConsole inputConsole = mock(InputConsole.class);
         MainMenu menu = mock(MainMenu.class);
-        Library library = mock(Library.class);
-        Interpreter interpreter = new Interpreter(library, inputConsole, outputConsole);
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        Interpreter interpreter = new Interpreter(bookLibrary, inputConsole, outputConsole);
         BibliotecaApp bibliotecaApp = new BibliotecaApp(menu, inputConsole, interpreter, outputConsole);
 
         exit.expectSystemExit();

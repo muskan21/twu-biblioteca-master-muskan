@@ -2,10 +2,10 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class Library {
+public class BookLibrary {
     private ArrayList<Book> bookList;
 
-    public Library(ArrayList<Book> bookList) {
+    public BookLibrary(ArrayList<Book> bookList) {
         this.bookList = bookList;
     }
 

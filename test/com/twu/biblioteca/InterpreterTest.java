@@ -17,7 +17,7 @@ public class InterpreterTest {
 
     @Test
     public void shouldExitIfExitOptionIsChosen() {
-        Interpreter interpreter = new Interpreter(new Library(new ArrayList<Book>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
+        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
 
         exit.expectSystemExit();
 
@@ -26,48 +26,48 @@ public class InterpreterTest {
 
     @Test
     public void shouldInvokeDisplayMethodCallForTheSelectedOption() {
-        Library library = mock(Library.class);
-        Interpreter interpreter = new Interpreter(library, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        Interpreter interpreter = new Interpreter(bookLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
 
         interpreter.interpret("1");
 
-        verify(library, times(1)).formattedListOfAvailableBooks();
+        verify(bookLibrary, times(1)).formattedListOfAvailableBooks();
     }
 
     @Test
     public void shouldInvokeCheckOutMethodCallForTheSelectedOption() {
-        Library library = mock(Library.class);
+        BookLibrary bookLibrary = mock(BookLibrary.class);
         InputConsole inputConsole = mock(InputConsole.class);
-        Interpreter interpreter = new Interpreter(library, inputConsole, new OutputConsole(new PrintStream(System.out)));
+        Interpreter interpreter = new Interpreter(bookLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)));
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
         interpreter.interpret("2");
 
-        verify(library, times(1)).checkOutBook("gone girl");
+        verify(bookLibrary, times(1)).checkOutBook("gone girl");
     }
 
     @Test
     public void shouldInvokeReturnMethodCallForTheSelectedOption() {
-        Library library = mock(Library.class);
+        BookLibrary bookLibrary = mock(BookLibrary.class);
         InputConsole inputConsole = mock(InputConsole.class);
-        Interpreter interpreter = new Interpreter(library, inputConsole, new OutputConsole(new PrintStream(System.out)));
+        Interpreter interpreter = new Interpreter(bookLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)));
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
         interpreter.interpret("3");
 
-        verify(library, times(1)).returnBook("gone girl");
+        verify(bookLibrary, times(1)).returnBook("gone girl");
     }
 
     @Test
     public void shouldPrintTheAppropriateMessageWhenInvalidOptionIsSelected() {
         ArrayList<Book> books = new ArrayList<Book>();
-        Library library = new Library(books);
+        BookLibrary bookLibrary = new BookLibrary(books);
         InputConsole inputConsole = new InputConsole(new Scanner(System.in));
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         OutputConsole out = new OutputConsole(new PrintStream(output));
-        Interpreter interpreter = new Interpreter(library, inputConsole, out);
+        Interpreter interpreter = new Interpreter(bookLibrary, inputConsole, out);
 
         interpreter.interpret("Muskan");
 

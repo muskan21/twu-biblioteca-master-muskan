@@ -1,11 +1,11 @@
 package com.twu.biblioteca;
 
 public class Interpreter {
-    private Library books;
+    private BookLibrary books;
     private InputConsole inputConsole;
     private OutputConsole out;
 
-    public Interpreter(Library books, InputConsole inputConsole, OutputConsole out) {
+    public Interpreter(BookLibrary books, InputConsole inputConsole, OutputConsole out) {
         this.books = books;
         this.inputConsole = inputConsole;
         this.out = out;

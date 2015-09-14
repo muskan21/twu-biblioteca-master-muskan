@@ -21,7 +21,7 @@ public class BibliotecaApp {
 
         ArrayList<Book> bookslist = new ArrayList<Book>();
         initializeBooksList(bookslist);
-        Library books = new Library(bookslist);
+        BookLibrary books = new BookLibrary(bookslist);
         MainMenu mainMenu = new MainMenu();
         initializeMainMenu(mainMenu);
         OutputConsole out = new OutputConsole(new PrintStream(System.out));
