@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.io.PrintStream;
 
 public class OutputConsole {
-    PrintStream printStream;
+    private PrintStream printStream;
 
     public OutputConsole(PrintStream printStream) {
         this.printStream = printStream;
