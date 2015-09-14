@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class BibliotecaApp {
     private MainMenu mainMenu;
@@ -9,9 +10,9 @@ public class BibliotecaApp {
     private Interpreter interpreter;
     private OutputConsole out;
 
-    public BibliotecaApp(MainMenu mainMenu, Interpreter interpreter, OutputConsole outputConsole) {
+    public BibliotecaApp(MainMenu mainMenu, InputConsole inputConsole, Interpreter interpreter, OutputConsole outputConsole) {
         this.mainMenu = mainMenu;
-        this.inputConsole = new InputConsole();
+        this.inputConsole = inputConsole;
         this.interpreter = interpreter;
         this.out = outputConsole;
     }
@@ -24,15 +25,16 @@ public class BibliotecaApp {
         MainMenu mainMenu = new MainMenu();
         initializeMainMenu(mainMenu);
         OutputConsole out = new OutputConsole(new PrintStream(System.out));
-        Interpreter interpreter = new Interpreter(books, new InputConsole(), out);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(mainMenu, interpreter, out);
+        InputConsole in = new InputConsole(new Scanner(System.in));
+        Interpreter interpreter = new Interpreter(books, in, out);
+        BibliotecaApp bibliotecaApp = new BibliotecaApp(mainMenu, in, interpreter, out);
         bibliotecaApp.start();
     }
 
     public void start() {
         welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         do {
-            out.display("");
+            out.display("\n");
             out.display(mainMenu.formattedMenu());
             String input = inputConsole.getInput();
             interpreter.interpret(input);

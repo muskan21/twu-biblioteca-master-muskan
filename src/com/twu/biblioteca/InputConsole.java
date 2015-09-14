@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class InputConsole {
     Scanner scanner;
 
-    public InputConsole() {
-        scanner = new Scanner(System.in);
+    public InputConsole(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     public String getInput() {

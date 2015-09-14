@@ -6,6 +6,7 @@ import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -16,7 +17,7 @@ public class InterpreterTest {
 
     @Test
     public void shouldExitIfExitOptionIsChosen() {
-        Interpreter interpreter = new Interpreter(new Library(new ArrayList<Book>()), new InputConsole(), new OutputConsole(new PrintStream(System.out)));
+        Interpreter interpreter = new Interpreter(new Library(new ArrayList<Book>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
 
         exit.expectSystemExit();
 
@@ -26,7 +27,7 @@ public class InterpreterTest {
     @Test
     public void shouldInvokeDisplayMethodCallForTheSelectedOption() {
         Library library = mock(Library.class);
-        Interpreter interpreter = new Interpreter(library, new InputConsole(), new OutputConsole(new PrintStream(System.out)));
+        Interpreter interpreter = new Interpreter(library, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
 
         interpreter.interpret("1");
 
@@ -63,7 +64,7 @@ public class InterpreterTest {
     public void shouldPrintTheAppropriateMessageWhenInvalidOptionIsSelected() {
         ArrayList<Book> books = new ArrayList<Book>();
         Library library = new Library(books);
-        InputConsole inputConsole = new InputConsole();
+        InputConsole inputConsole = new InputConsole(new Scanner(System.in));
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         OutputConsole out = new OutputConsole(new PrintStream(output));
         Interpreter interpreter = new Interpreter(library, inputConsole, out);
