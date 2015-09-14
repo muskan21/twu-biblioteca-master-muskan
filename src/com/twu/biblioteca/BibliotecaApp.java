@@ -45,6 +45,7 @@ public class BibliotecaApp {
     private static void initializeMainMenu(MainMenu mainMenu) {
         mainMenu.addOption("List Books.");
         mainMenu.addOption("Check Out Book.");
+        mainMenu.addOption("Return Book.");
         mainMenu.addOption("Exit.");
     }
 

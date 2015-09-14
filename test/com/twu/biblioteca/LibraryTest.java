@@ -134,4 +134,17 @@ public class LibraryTest {
         assertEquals("That is not a valid book to return", returnString);
         System.setOut(System.out);
     }
+
+    @Test
+    public void doesNotReturnTheBookIfAlreadyAvailableBookIsReturned() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+        Library library = new Library(books);
+
+        String returnString = library.returnBook("Harry potter");
+
+        assertEquals("That is not a valid book to return", returnString);
+        System.setOut(System.out);
+    }
 }

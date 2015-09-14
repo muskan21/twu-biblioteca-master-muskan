@@ -38,7 +38,7 @@ public class Library {
         Book returnedBook = new Book(bookName);
         boolean returnFlag = false;
         for(Book book : bookList) {
-            if(book.equals(returnedBook)) {
+            if(book.equals(returnedBook) && book.checkOutStatus()) {
                 book.returnBook();
                 returnFlag = true;
                 break;

@@ -26,7 +26,6 @@ public class Interpreter {
                 break;
             case "4":
                 System.exit(0);
-                break;
             default:
                 System.out.println("Select A Valid Option!!");
         }
