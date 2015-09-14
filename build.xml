@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="TWU_Biblioteca-master-Muskan" default="runjUnit" basedir=".">
+<project name="TWU_Biblioteca-master-Muskan" default="run" basedir=".">
 
     <path id="test.compile.classpath" description="classpath for compiling test-sources">
         <pathelement location="out/classes" />
@@ -73,7 +73,7 @@
         <cobertura-report format="xml" destdir="out/reports/cobertura" datafile="out/cobertura.ser" srcdir="src" />
     </target>
 
-    <target name="buildJar" depends="compile.sources">
+    <target name="buildJar" depends="runjUnit">
         <jar destfile="lib/TWU_Biblioteca-master-Muskan.jar" basedir="out/classes" excludes="**/*Test*.class">
             <manifest>
                 <attribute name="Main-Class" value="com.twu.biblioteca.BibliotecaApp"/>
@@ -82,7 +82,7 @@
     </target>
 
     <target name="run" depends="buildJar">
-        <java fork="true" failonerror="yes" classname="com.twu.biblioteca.BibliotecaApp">
+        <java failonerror="yes" classname="com.twu.biblioteca.BibliotecaApp">
             <classpath>
                 <path location="lib/TWU_Biblioteca-master-Muskan.jar"/>
             </classpath>

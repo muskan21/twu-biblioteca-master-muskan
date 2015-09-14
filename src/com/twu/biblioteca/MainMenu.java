@@ -4,20 +4,9 @@ import java.util.ArrayList;
 
 public class MainMenu {
     private ArrayList<String> options;
-    private int noOfOptions;
 
-    public MainMenu() {
-        options = new ArrayList<String>();
-        noOfOptions = 0;
-    }
-
-    public void addOption(String option) {
-        noOfOptions++;
-        options.add(noOfOptions+". "+option);
-    }
-
-    public int getNoOfOptions() {
-        return noOfOptions;
+    public MainMenu(ArrayList<String> options) {
+        this.options = options;
     }
 
     public String formattedMenu() {

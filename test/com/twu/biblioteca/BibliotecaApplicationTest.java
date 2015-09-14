@@ -13,23 +13,23 @@ import java.util.Scanner;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class BibliotecaAppTest {
+public class BibliotecaApplicationTest {
 
     @Test
     public void shouldInvokeTheStartApplicationMethod() {
-        BibliotecaApp bibliotecaApp = mock(BibliotecaApp.class);
+        BibliotecaApplication bibliotecaApplication = mock(BibliotecaApplication.class);
 
-        bibliotecaApp.start();
+        bibliotecaApplication.start();
 
-        verify(bibliotecaApp, times(1)).start();
+        verify(bibliotecaApplication, times(1)).start();
     }
 
     @Test
     public void shouldCallTheWelcomeMessageMethod() {
-        BibliotecaApp bibliotecaApp = mock(BibliotecaApp.class);
+        BibliotecaApplication bibliotecaApplication = mock(BibliotecaApplication.class);
         String testString = "Welcome To Biblioteca Library Management System.\nHappy To Help.";
-        bibliotecaApp.welcomeMessage(testString);
-        verify(bibliotecaApp, times(1)).welcomeMessage(testString);
+        bibliotecaApplication.welcomeMessage(testString);
+        verify(bibliotecaApplication, times(1)).welcomeMessage(testString);
     }
 
     @Test
@@ -37,8 +37,8 @@ public class BibliotecaAppTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(out);
         OutputConsole outputConsole = new OutputConsole(printStream);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(new MainMenu(), new InputConsole(new Scanner(System.in)), new Interpreter(new BookLibrary(new ArrayList<Book>()), new InputConsole(new Scanner(System.in)), outputConsole), outputConsole);
-        bibliotecaApp.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new MainMenu(new ArrayList<String>()), new InputConsole(new Scanner(System.in)), new Interpreter(new BookLibrary(new ArrayList<Book>()), new InputConsole(new Scanner(System.in)), outputConsole), outputConsole);
+        bibliotecaApplication.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         assertEquals("Welcome To Biblioteca Library Management System.\nHappy To Help.\n", out.toString());
     }
 
@@ -52,11 +52,11 @@ public class BibliotecaAppTest {
         MainMenu menu = mock(MainMenu.class);
         BookLibrary bookLibrary = mock(BookLibrary.class);
         Interpreter interpreter = new Interpreter(bookLibrary, inputConsole, outputConsole);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(menu, inputConsole, interpreter, outputConsole);
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(menu, inputConsole, interpreter, outputConsole);
 
         exit.expectSystemExit();
         when(inputConsole.getInput()).thenReturn("4");
-        bibliotecaApp.start();
+        bibliotecaApplication.start();
 
         verify(interpreter, times(1)).interpret("4");
     }

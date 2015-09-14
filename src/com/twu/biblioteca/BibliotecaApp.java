@@ -5,51 +5,29 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
-    private MainMenu mainMenu;
-    private InputConsole inputConsole;
-    private Interpreter interpreter;
-    private OutputConsole out;
-
-    public BibliotecaApp(MainMenu mainMenu, InputConsole inputConsole, Interpreter interpreter, OutputConsole outputConsole) {
-        this.mainMenu = mainMenu;
-        this.inputConsole = inputConsole;
-        this.interpreter = interpreter;
-        this.out = outputConsole;
-    }
-
     public static void main(String[] args) {
 
         ArrayList<Book> bookslist = new ArrayList<Book>();
         initializeBooksList(bookslist);
         BookLibrary books = new BookLibrary(bookslist);
-        MainMenu mainMenu = new MainMenu();
-        initializeMainMenu(mainMenu);
-        OutputConsole out = new OutputConsole(new PrintStream(System.out));
-        InputConsole in = new InputConsole(new Scanner(System.in));
-        Interpreter interpreter = new Interpreter(books, in, out);
-        BibliotecaApp bibliotecaApp = new BibliotecaApp(mainMenu, in, interpreter, out);
-        bibliotecaApp.start();
+        MainMenu mainMenu = initializeMainMenu();
+        OutputConsole outputConsole = new OutputConsole(new PrintStream(System.out));
+        InputConsole inputConsole = new InputConsole(new Scanner(System.in));
+        Interpreter interpreter = new Interpreter(books, inputConsole, outputConsole);
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(mainMenu, inputConsole, interpreter, outputConsole);
+
+
+        bibliotecaApplication.start();
     }
 
-    public void start() {
-        welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
-        do {
-            out.display("\n");
-            out.display(mainMenu.formattedMenu());
-            String input = inputConsole.getInput();
-            interpreter.interpret(input);
-        }while(true);
-    }
-
-    public void welcomeMessage(String message) {
-        out.display(message);
-    }
-
-    private static void initializeMainMenu(MainMenu mainMenu) {
-        mainMenu.addOption("List Books.");
-        mainMenu.addOption("Check Out Book.");
-        mainMenu.addOption("Return Book.");
-        mainMenu.addOption("Exit.");
+    private static MainMenu initializeMainMenu() {
+        ArrayList<String> options = new ArrayList<String>();
+        options.add("1. List Books.");
+        options.add("2. Check Out Book.");
+        options.add("3. Return Book.");
+        options.add("4. Exit.");
+        MainMenu mainMenu = new MainMenu(options);
+        return mainMenu;
     }
 
     private static void initializeBooksList(ArrayList<Book> bookslist) {
