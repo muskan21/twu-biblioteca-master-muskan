@@ -17,17 +17,17 @@ public class InterpreterTest {
 
     @Test
     public void shouldExitIfExitOptionIsChosen() {
-        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
+        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
 
         exit.expectSystemExit();
 
-        interpreter.interpret("4");
+        interpreter.interpret("5");
     }
 
     @Test
     public void shouldInvokeDisplayMethodCallForTheSelectedOption() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        Interpreter interpreter = new Interpreter(bookLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
 
         interpreter.interpret("1");
 
@@ -35,10 +35,21 @@ public class InterpreterTest {
     }
 
     @Test
+    public void shouldInvokeMovieDisplayMethodCallForTheSelectedOption() {
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+
+        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
+
+        interpreter.interpret("4");
+
+        verify(movieLibrary, times(1)).formattedListOfAvailableMovies();
+    }
+
+    @Test
     public void shouldInvokeCheckOutMethodCallForTheSelectedOption() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
         InputConsole inputConsole = mock(InputConsole.class);
-        Interpreter interpreter = new Interpreter(bookLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)));
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)));
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -51,7 +62,7 @@ public class InterpreterTest {
     public void shouldInvokeReturnMethodCallForTheSelectedOption() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
         InputConsole inputConsole = mock(InputConsole.class);
-        Interpreter interpreter = new Interpreter(bookLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)));
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)));
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -67,7 +78,7 @@ public class InterpreterTest {
         InputConsole inputConsole = new InputConsole(new Scanner(System.in));
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         OutputConsole out = new OutputConsole(new PrintStream(output));
-        Interpreter interpreter = new Interpreter(bookLibrary, inputConsole, out);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out);
 
         interpreter.interpret("Muskan");
 

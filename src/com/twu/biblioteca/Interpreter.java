@@ -2,11 +2,13 @@ package com.twu.biblioteca;
 
 public class Interpreter {
     private BookLibrary books;
+    private MovieLibrary movies;
     private InputConsole inputConsole;
     private OutputConsole out;
 
-    public Interpreter(BookLibrary books, InputConsole inputConsole, OutputConsole out) {
+    public Interpreter(BookLibrary books, MovieLibrary movies, InputConsole inputConsole, OutputConsole out) {
         this.books = books;
+        this.movies = movies;
         this.inputConsole = inputConsole;
         this.out = out;
     }
@@ -27,6 +29,9 @@ public class Interpreter {
                 out.display(books.returnBook(returnBook));
                 break;
             case "4":
+                out.display(movies.formattedListOfAvailableMovies());
+                break;
+            case "5":
                 System.exit(0);
             default:
                 out.display("Select A Valid Option!!");

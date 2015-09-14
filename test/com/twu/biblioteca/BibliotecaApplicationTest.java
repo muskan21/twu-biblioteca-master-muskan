@@ -37,7 +37,7 @@ public class BibliotecaApplicationTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(out);
         OutputConsole outputConsole = new OutputConsole(printStream);
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new MainMenu(new ArrayList<String>()), new InputConsole(new Scanner(System.in)), new Interpreter(new BookLibrary(new ArrayList<Book>()), new InputConsole(new Scanner(System.in)), outputConsole), outputConsole);
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new MainMenu(new ArrayList<String>()), new InputConsole(new Scanner(System.in)), new Interpreter(new BookLibrary(new ArrayList<Book>()), new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), outputConsole), outputConsole);
         bibliotecaApplication.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         assertEquals("Welcome To Biblioteca Library Management System.\nHappy To Help.\n", out.toString());
     }
@@ -51,13 +51,13 @@ public class BibliotecaApplicationTest {
         InputConsole inputConsole = mock(InputConsole.class);
         MainMenu menu = mock(MainMenu.class);
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        Interpreter interpreter = new Interpreter(bookLibrary, inputConsole, outputConsole);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, outputConsole);
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(menu, inputConsole, interpreter, outputConsole);
 
         exit.expectSystemExit();
-        when(inputConsole.getInput()).thenReturn("4");
+        when(inputConsole.getInput()).thenReturn("5");
         bibliotecaApplication.start();
 
-        verify(interpreter, times(1)).interpret("4");
+        verify(interpreter, times(1)).interpret("5");
     }
 }

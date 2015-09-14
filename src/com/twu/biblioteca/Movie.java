@@ -14,6 +14,6 @@ public class Movie {
     }
 
     public String formattedMovieDetails() {
-        return String.format("%-30s %-30d %-30s %-30s", name, year, director, rating);
+        return String.format("%-30s %-30d %-30s %-30s\n", name, year, director, rating);
     }
 }
