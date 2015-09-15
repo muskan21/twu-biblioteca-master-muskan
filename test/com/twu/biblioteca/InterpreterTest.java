@@ -21,7 +21,7 @@ public class InterpreterTest {
 
         exit.expectSystemExit();
 
-        interpreter.interpret("5");
+        interpreter.interpret("6");
     }
 
     @Test
@@ -56,6 +56,19 @@ public class InterpreterTest {
         interpreter.interpret("2");
 
         verify(bookLibrary, times(1)).checkOutBook("gone girl");
+    }
+
+    @Test
+    public void shouldInvokeMovieCheckOutMethodCallForTheSelectedOption() {
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)));
+
+        when(inputConsole.getInput()).thenReturn("gone girl");
+
+        interpreter.interpret("5");
+
+        verify(movieLibrary, times(1)).checkOutMovie("gone girl");
     }
 
     @Test

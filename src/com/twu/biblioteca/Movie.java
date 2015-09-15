@@ -16,4 +16,20 @@ public class Movie {
     public String formattedMovieDetails() {
         return String.format("%-30s %-30d %-30s %-30s\n", name, year, director, rating);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Movie movie = (Movie) o;
+
+        return name.toLowerCase().equals(movie.name.toLowerCase());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name.toLowerCase().hashCode();
+    }
 }

@@ -32,6 +32,11 @@ public class Interpreter {
                 out.display(movies.formattedListOfAvailableMovies());
                 break;
             case "5":
+                out.display("Enter The Name Of The Movie To Check Out : ");
+                String checkedOutMovie = inputConsole.getInput();
+                movies.checkOutMovie(checkedOutMovie);
+                break;
+            case "6":
                 System.exit(0);
             default:
                 out.display("Select A Valid Option!!");

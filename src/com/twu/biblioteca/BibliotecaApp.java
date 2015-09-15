@@ -27,7 +27,8 @@ public class BibliotecaApp {
         options.add("2. Check Out Book.");
         options.add("3. Return Book.");
         options.add("4. List Movies.");
-        options.add("5. Exit.");
+        options.add("5. Check Out Movie.");
+        options.add("6. Exit.");
         MainMenu mainMenu = new MainMenu(options);
         return mainMenu;
     }
