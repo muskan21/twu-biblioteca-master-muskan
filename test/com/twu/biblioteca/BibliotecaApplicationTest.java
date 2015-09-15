@@ -8,6 +8,7 @@ import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -37,7 +38,7 @@ public class BibliotecaApplicationTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(out);
         OutputConsole outputConsole = new OutputConsole(printStream);
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new MainMenu(new ArrayList<String>()), new InputConsole(new Scanner(System.in)), new Interpreter(new BookLibrary(new ArrayList<Book>()), new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), outputConsole), outputConsole);
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new MainMenu(new HashMap<String, String>()), new InputConsole(new Scanner(System.in)), new Interpreter(new BookLibrary(new ArrayList<Book>()), new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), outputConsole), outputConsole);
         bibliotecaApplication.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         assertEquals("Welcome To Biblioteca Library Management System.\nHappy To Help.\n", out.toString());
     }

@@ -21,7 +21,7 @@ public class InterpreterTest {
 
         exit.expectSystemExit();
 
-        interpreter.interpret("6");
+        interpreter.interpret("Q");
     }
 
     @Test
@@ -40,7 +40,7 @@ public class InterpreterTest {
 
         Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
 
-        interpreter.interpret("4");
+        interpreter.interpret("2");
 
         verify(movieLibrary, times(1)).formattedListOfAvailableMovies();
     }
@@ -53,7 +53,7 @@ public class InterpreterTest {
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
-        interpreter.interpret("2");
+        interpreter.interpret("4");
 
         verify(bookLibrary, times(1)).checkOutBook("gone girl");
     }
@@ -66,7 +66,7 @@ public class InterpreterTest {
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
-        interpreter.interpret("5");
+        interpreter.interpret("3");
 
         verify(movieLibrary, times(1)).checkOutMovie("gone girl");
     }
@@ -79,7 +79,7 @@ public class InterpreterTest {
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
-        interpreter.interpret("3");
+        interpreter.interpret("5");
 
         verify(bookLibrary, times(1)).returnBook("gone girl");
     }
@@ -96,5 +96,19 @@ public class InterpreterTest {
         interpreter.interpret("Muskan");
 
         assertEquals("Select A Valid Option!!\n", output.toString());
+    }
+
+    @Test
+    public void shouldPrintTheAppropriateMessageWhenLogoutOptionIsSelected() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        BookLibrary bookLibrary = new BookLibrary(books);
+        InputConsole inputConsole = new InputConsole(new Scanner(System.in));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        OutputConsole out = new OutputConsole(new PrintStream(output));
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out);
+
+        interpreter.interpret("0");
+
+        assertEquals("Logout.\n", output.toString());
     }
 }

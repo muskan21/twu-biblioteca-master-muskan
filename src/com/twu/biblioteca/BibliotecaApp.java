@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class BibliotecaApp {
@@ -22,14 +23,18 @@ public class BibliotecaApp {
     }
 
     private static MainMenu initializeMainMenu() {
-        ArrayList<String> options = new ArrayList<String>();
-        options.add("1. List Books.");
-        options.add("2. Check Out Book.");
-        options.add("3. Return Book.");
-        options.add("4. List Movies.");
-        options.add("5. Check Out Movie.");
-        options.add("6. Exit.");
-        MainMenu mainMenu = new MainMenu(options);
+        HashMap<String, String> menuOptions = new HashMap<String, String>();
+        menuOptions.put("1", "List Books.");
+        menuOptions.put("2", "List Movies.");
+        menuOptions.put("3", "Check Out Movies.");
+        menuOptions.put("4", "Check Out Book.");
+        menuOptions.put("5", "Return Book.");
+        menuOptions.put("6", "User Details.");
+        menuOptions.put("7", "Book Details.");
+        menuOptions.put("L", "Login.");
+        menuOptions.put("0", "Logout.");
+        menuOptions.put("Q", "Quit.");
+        MainMenu mainMenu = new MainMenu(menuOptions);
         return mainMenu;
     }
 

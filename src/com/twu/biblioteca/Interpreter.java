@@ -18,25 +18,28 @@ public class Interpreter {
             case "1":
                 out.display(books.formattedListOfAvailableBooks());
                 break;
-            case "2":
+            case "4":
                 out.display("Enter The Name Of The Book To Check Out : ");
                 String checkedOutBook = inputConsole.getInput();
                 out.display(books.checkOutBook(checkedOutBook));
                 break;
-            case "3":
+            case "5":
                 out.display("Enter The Name Of The Book To Return : ");
                 String returnBook = inputConsole.getInput();
                 out.display(books.returnBook(returnBook));
                 break;
-            case "4":
+            case "2":
                 out.display(movies.formattedListOfAvailableMovies());
                 break;
-            case "5":
+            case "3":
                 out.display("Enter The Name Of The Movie To Check Out : ");
                 String checkedOutMovie = inputConsole.getInput();
                 movies.checkOutMovie(checkedOutMovie);
                 break;
-            case "6":
+            case "0":
+                out.display("Logout.");
+                break;
+            case "Q":
                 System.exit(0);
             default:
                 out.display("Select A Valid Option!!");

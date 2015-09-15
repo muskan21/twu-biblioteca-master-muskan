@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 public class BibliotecaApplication {
     private MainMenu mainMenu;
     private InputConsole inputConsole;
@@ -17,7 +19,11 @@ public class BibliotecaApplication {
         welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         do {
             out.display("\n");
-            out.display(mainMenu.formattedMenu());
+            ArrayList<String> availableOptions = new ArrayList<String>();
+            availableOptions.add("1");
+            availableOptions.add("2");
+            availableOptions.add("3");
+            out.display(mainMenu.formattedMenu(availableOptions));
             String input = inputConsole.getInput();
             interpreter.interpret(input);
         } while(true);
