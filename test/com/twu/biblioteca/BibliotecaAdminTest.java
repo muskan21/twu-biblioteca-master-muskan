@@ -21,4 +21,18 @@ public class BibliotecaAdminTest {
 
         assertEquals("Guest User", libraryNumber);
     }
+
+    @Test
+    public void shouldReturnLibraryNumberWhenLoginCredentialsOfLibrarianMatch() {
+        User user1 = new User("111-1234", "password1");
+        User user2 = new User("012-3212", "password2");
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(user1);
+        users.add(user2);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+
+        String libraryNumber = bibliotecaAdmin.login("012-3212", "password2");
+
+        assertEquals("012-3212", libraryNumber);
+    }
 }

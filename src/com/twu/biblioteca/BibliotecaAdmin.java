@@ -10,6 +10,8 @@ public class BibliotecaAdmin {
     }
 
     public String login(String libraryNumber, String password) {
+        if(users.contains(new User(libraryNumber, password)))
+            return libraryNumber;
         return "Guest User";
     }
 }

@@ -8,4 +8,19 @@ public class User {
         this.libraryNumber = libraryNumber;
         this.password = password;
     }
+
+    @Override
+    public boolean equals(Object userObject) {
+        if (this == userObject) return true;
+        if (userObject == null || getClass() != userObject.getClass()) return false;
+
+        User user = (User) userObject;
+
+        return libraryNumber.equals(user.libraryNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return libraryNumber.hashCode();
+    }
 }
