@@ -20,7 +20,7 @@ public class BibliotecaApplication {
             out.display(mainMenu.formattedMenu());
             String input = inputConsole.getInput();
             interpreter.interpret(input);
-        }while(true);
+        } while(true);
     }
 
     public void welcomeMessage(String message) {
