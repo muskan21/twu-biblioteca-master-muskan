@@ -2,8 +2,7 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class UserTest {
     @Test
@@ -49,5 +48,19 @@ public class UserTest {
         User user = new User("111-1234", "password1");
         User user1 = new User("111-1234", "password2");
         assertEquals(user.hashCode(), user1.hashCode());
+    }
+
+    @Test
+    public void shouldReturnTrueIfPasswordsMatch() {
+        User user = new User("111-1234", "password1");
+
+        assertTrue(user.authenticatePassword("password1"));
+    }
+
+    @Test
+    public void shouldReturnFalseIfPasswordsDoNotMatch() {
+        User user = new User("111-1234", "password1");
+
+        assertFalse(user.authenticatePassword("password2"));
     }
 }

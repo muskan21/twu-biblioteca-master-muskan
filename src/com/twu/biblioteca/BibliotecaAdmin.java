@@ -10,8 +10,10 @@ public class BibliotecaAdmin {
     }
 
     public String login(String libraryNumber, String password) {
-        if(users.contains(new User(libraryNumber, password)))
-            return libraryNumber;
+        int index = users.indexOf(new User(libraryNumber, password));
+        if(index != -1)
+            if(users.get(index).authenticatePassword(password))
+                return libraryNumber;
         return "Guest User";
     }
 }

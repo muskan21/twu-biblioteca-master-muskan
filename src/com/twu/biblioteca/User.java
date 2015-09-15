@@ -23,4 +23,11 @@ public class User {
     public int hashCode() {
         return libraryNumber.hashCode();
     }
+
+    public boolean authenticatePassword(String password) {
+        if(password.equals(this.password))
+            return true;
+        else
+            return false;
+    }
 }
