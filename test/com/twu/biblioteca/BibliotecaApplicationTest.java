@@ -56,9 +56,9 @@ public class BibliotecaApplicationTest {
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(menu, inputConsole, interpreter, outputConsole);
 
         exit.expectSystemExit();
-        when(inputConsole.getInput()).thenReturn("6");
+        when(inputConsole.getInput()).thenReturn("Q");
         bibliotecaApplication.start();
 
-        verify(interpreter, times(1)).interpret("6");
+        verify(interpreter, times(1)).interpret("Q");
     }
 }
