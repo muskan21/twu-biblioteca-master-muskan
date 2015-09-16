@@ -34,4 +34,8 @@ public class User {
         else
             return false;
     }
+
+    public ArrayList<String> canPerformOperations() {
+        return role.canPerformOperations();
+    }
 }
