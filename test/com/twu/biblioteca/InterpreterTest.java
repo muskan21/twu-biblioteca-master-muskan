@@ -17,7 +17,15 @@ public class InterpreterTest {
 
     @Test
     public void shouldExitIfExitOptionIsChosen() {
-        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         exit.expectSystemExit();
 
@@ -27,7 +35,15 @@ public class InterpreterTest {
     @Test
     public void shouldInvokeDisplayMethodCallForTheSelectedOption() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         interpreter.interpret("1");
 
@@ -37,8 +53,15 @@ public class InterpreterTest {
     @Test
     public void shouldInvokeMovieDisplayMethodCallForTheSelectedOption() {
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
-
-        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)));
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         interpreter.interpret("2");
 
@@ -49,7 +72,15 @@ public class InterpreterTest {
     public void shouldInvokeCheckOutMethodCallForTheSelectedOption() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
         InputConsole inputConsole = mock(InputConsole.class);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)));
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -62,7 +93,15 @@ public class InterpreterTest {
     public void shouldInvokeMovieCheckOutMethodCallForTheSelectedOption() {
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
         InputConsole inputConsole = mock(InputConsole.class);
-        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)));
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -75,7 +114,15 @@ public class InterpreterTest {
     public void shouldInvokeReturnMethodCallForTheSelectedOption() {
         BookLibrary bookLibrary = mock(BookLibrary.class);
         InputConsole inputConsole = mock(InputConsole.class);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)));
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -91,7 +138,15 @@ public class InterpreterTest {
         InputConsole inputConsole = new InputConsole(new Scanner(System.in));
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         OutputConsole out = new OutputConsole(new PrintStream(output));
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out);
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin);
 
         interpreter.interpret("Muskan");
 
@@ -105,7 +160,15 @@ public class InterpreterTest {
         InputConsole inputConsole = new InputConsole(new Scanner(System.in));
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         OutputConsole out = new OutputConsole(new PrintStream(output));
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out);
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin);
 
         interpreter.interpret("0");
 

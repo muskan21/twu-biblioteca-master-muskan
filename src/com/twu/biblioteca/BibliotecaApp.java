@@ -15,11 +15,27 @@ public class BibliotecaApp {
         MainMenu mainMenu = initializeMainMenu();
         OutputConsole outputConsole = new OutputConsole(new PrintStream(System.out));
         InputConsole inputConsole = new InputConsole(new Scanner(System.in));
-        Interpreter interpreter = new Interpreter(books, movies, inputConsole, outputConsole);
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(mainMenu, inputConsole, interpreter, outputConsole);
+        RolesFactory rolesFactory = new RolesFactory();
+        User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
+        ArrayList<User> users = initializeUserList();
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        Interpreter interpreter = new Interpreter(books, movies, inputConsole, outputConsole, user, bibliotecaAdmin);
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(mainMenu, inputConsole, interpreter, outputConsole, rolesFactory);
 
 
         bibliotecaApplication.start();
+    }
+
+    private static ArrayList<User> initializeUserList() {
+        RolesFactory rolesFactory = new RolesFactory();
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5680", "password3", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("111-3456", "password4", rolesFactory.assignOperations(Role.LIBRARIAN)));
+        users.add(new User("111-3457", "password5", rolesFactory.assignOperations(Role.LIBRARIAN)));
+        users.add(new User("111-3458", "password6", rolesFactory.assignOperations(Role.LIBRARIAN)));
+        return users;
     }
 
     private static MainMenu initializeMainMenu() {

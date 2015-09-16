@@ -6,30 +6,31 @@ public class BibliotecaApplication {
     private MainMenu mainMenu;
     private InputConsole inputConsole;
     private Interpreter interpreter;
-    private OutputConsole out;
+    private OutputConsole outputConsole;
+    private RolesFactory rolesFactory;
 
-    public BibliotecaApplication(MainMenu mainMenu, InputConsole inputConsole, Interpreter interpreter, OutputConsole outputConsole) {
+    public BibliotecaApplication(MainMenu mainMenu, InputConsole inputConsole, Interpreter interpreter, OutputConsole outputConsole, RolesFactory rolesFactory) {
         this.mainMenu = mainMenu;
         this.inputConsole = inputConsole;
         this.interpreter = interpreter;
-        this.out = outputConsole;
+        this.outputConsole = outputConsole;
+        this.rolesFactory = rolesFactory;
     }
 
     public void start() {
+        ArrayList<String> availableOptions = new ArrayList<String>();
+        User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
+        availableOptions = user.canPerformOperations();
         welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         do {
-            out.display("\n");
-            ArrayList<String> availableOptions = new ArrayList<String>();
-            availableOptions.add("1");
-            availableOptions.add("2");
-            availableOptions.add("3");
-            out.display(mainMenu.formattedMenu(availableOptions));
+            outputConsole.display("\n");
+            outputConsole.display(mainMenu.formattedMenu(availableOptions));
             String input = inputConsole.getInput();
             interpreter.interpret(input);
         } while(true);
     }
 
     public void welcomeMessage(String message) {
-        out.display(message);
+        outputConsole.display(message);
     }
 }
