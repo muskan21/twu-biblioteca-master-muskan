@@ -22,12 +22,12 @@ public class Roles {
 
         Roles roles = (Roles) o;
 
-        return role == roles.role;
+        return role == roles.role && operations.equals(roles.operations);
 
     }
 
     @Override
     public int hashCode() {
-        return role.hashCode();
+        return role.hashCode() + operations.hashCode();
     }
 }
