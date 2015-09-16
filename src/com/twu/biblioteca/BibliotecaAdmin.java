@@ -9,11 +9,12 @@ public class BibliotecaAdmin {
         this.users = users;
     }
 
-    public String login(String libraryNumber, String password) {
-        int index = users.indexOf(new User(libraryNumber, password));
+    public User login(String libraryNumber, String password) {
+        User user1 = new User(libraryNumber, password, new Roles(Role.GUEST));
+        int index = users.indexOf(user1);
         if(index != -1)
             if(users.get(index).authenticatePassword(password))
-                return libraryNumber;
-        return "Guest User";
+                return users.get(index);
+        return user1;
     }
 }
