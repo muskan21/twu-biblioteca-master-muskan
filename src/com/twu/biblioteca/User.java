@@ -1,12 +1,16 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 public class User {
     private String libraryNumber;
     private String password;
+    private Roles role;
 
-    public User(String libraryNumber, String password) {
+    public User(String libraryNumber, String password, Roles role) {
         this.libraryNumber = libraryNumber;
         this.password = password;
+        this.role = role;
     }
 
     @Override
