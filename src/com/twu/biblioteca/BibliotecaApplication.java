@@ -26,7 +26,7 @@ public class BibliotecaApplication {
             outputConsole.display("\n");
             outputConsole.display(mainMenu.formattedMenu(availableOptions));
             String input = inputConsole.getInput();
-            interpreter.interpret(input);
+            availableOptions = interpreter.interpret(input);
         } while(true);
     }
 

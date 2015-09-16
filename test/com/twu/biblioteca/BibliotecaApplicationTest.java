@@ -73,4 +73,39 @@ public class BibliotecaApplicationTest {
 
         verify(interpreter, times(1)).interpret("Q");
     }
+
+    @Test
+    public void shouldSuccessfullyPrintNewUsersMenuOnLogin() {
+        OutputConsole outputConsole = new OutputConsole(new PrintStream(System.out));
+        InputConsole inputConsole = mock(InputConsole.class);
+        HashMap<String, String> menuOptions = new HashMap<String, String>();
+        menuOptions.put("1", "List Books.");
+        menuOptions.put("2", "List Movies.");
+        menuOptions.put("3", "Check Out Movies.");
+        menuOptions.put("4", "Check Out Book.");
+        menuOptions.put("5", "Return Book.");
+        menuOptions.put("6", "Book Details.");
+        menuOptions.put("7", "User Details.");
+        menuOptions.put("L", "Login.");
+        menuOptions.put("0", "Logout.");
+        menuOptions.put("Q", "Quit.");
+        MainMenu menu = new MainMenu(menuOptions);
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        RolesFactory rolesFactory = new RolesFactory();
+        User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5677", "password3", rolesFactory.assignOperations(Role.LIBRARIAN)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, outputConsole, user, bibliotecaAdmin);
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(menu, inputConsole, interpreter, outputConsole, rolesFactory);
+
+        exit.expectSystemExit();
+        when(inputConsole.getInput()).thenReturn("L", "123-5677", "password3", "Q");
+        bibliotecaApplication.start();
+
+        verify(interpreter, times(1)).interpret("L");
+        verify(interpreter, times(1)).interpret("Q");
+    }
 }

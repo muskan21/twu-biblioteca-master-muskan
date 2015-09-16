@@ -167,11 +167,62 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin);
 
         interpreter.interpret("0");
 
         assertEquals("Logout.\n", output.toString());
+    }
+
+    @Test
+    public void shouldLoginAUserWhenAppropriateOptionIsSelectedAndCredentialsMatch() {
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        RolesFactory rolesFactory = new RolesFactory();
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin);
+
+        when(inputConsole.getInput()).thenReturn("123-5678", "password1");
+
+        ArrayList<String> testString = interpreter.interpret("L");
+        Roles role = rolesFactory.assignOperations(Role.CUSTOMER);
+
+        assertEquals(testString, role.canPerformOperations());
+    }
+
+    @Test
+    public void shouldNotLoginAUserWhenAppropriateOptionIsSelectedAndCredentialsDoNotMatch() {
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        RolesFactory rolesFactory = new RolesFactory();
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin);
+
+        when(inputConsole.getInput()).thenReturn("123-5680", "password8");
+
+        ArrayList<String> testString = interpreter.interpret("L");
+        operation.add("2");
+        operation.add("3");
+        operation.add("L");
+        operation.add("Q");
+
+        assertEquals(testString, operation);
     }
 }
