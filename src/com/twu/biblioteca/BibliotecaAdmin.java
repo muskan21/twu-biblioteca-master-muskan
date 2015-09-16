@@ -4,19 +4,15 @@ import java.util.ArrayList;
 
 public class BibliotecaAdmin {
     private ArrayList<User> users;
+    private RolesFactory rolesFactory;
 
-    public BibliotecaAdmin(ArrayList<User> users) {
+    public BibliotecaAdmin(ArrayList<User> users, RolesFactory rolesFactory) {
         this.users = users;
+        this.rolesFactory = rolesFactory;
     }
 
     public User login(String libraryNumber, String password) {
-        ArrayList<String> operations = new ArrayList<String>();
-        operations.add("1");
-        operations.add("2");
-        operations.add("3");
-        operations.add("L");
-        operations.add("Q");
-        User user1 = new User(libraryNumber, password, new Roles(Role.GUEST, operations));
+        User user1 = new User(libraryNumber, password, rolesFactory.assignOperations(Role.GUEST));
         int index = users.indexOf(user1);
         if(index != -1)
             if(users.get(index).authenticatePassword(password))

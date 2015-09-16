@@ -24,7 +24,7 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
         Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         exit.expectSystemExit();
@@ -42,7 +42,7 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         interpreter.interpret("1");
@@ -60,7 +60,7 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
         Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         interpreter.interpret("2");
@@ -79,7 +79,7 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
@@ -100,7 +100,7 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
         Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
@@ -121,7 +121,7 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
@@ -145,7 +145,7 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin);
 
         interpreter.interpret("Muskan");

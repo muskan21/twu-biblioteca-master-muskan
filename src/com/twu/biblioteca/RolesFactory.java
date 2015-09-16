@@ -26,7 +26,7 @@ public class RolesFactory {
         operations.add("5");
         operations.add("6");
         operations.add("7");
-        operations.add("L");
+        operations.add("0");
         operations.add("Q");
         return operations;
     }
@@ -39,7 +39,7 @@ public class RolesFactory {
         operations.add("4");
         operations.add("5");
         operations.add("6");
-        operations.add("L");
+        operations.add("0");
         operations.add("Q");
         return operations;
     }
