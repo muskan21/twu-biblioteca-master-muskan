@@ -135,4 +135,20 @@ public class BibliotecaAdminTest {
 
         assertEquals(testUser.canPerformOperations(), libraryNumber.canPerformOperations());
     }
+
+    @Test
+    public void shouldReturnGuestUserOnLogout() {
+        RolesFactory rolesFactory = new RolesFactory();
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(user1);
+        users.add(user2);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+
+        User libraryNumber = bibliotecaAdmin.logout();
+        User testUser = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
+
+        assertEquals(testUser.canPerformOperations(), libraryNumber.canPerformOperations());
+    }
 }

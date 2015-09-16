@@ -56,7 +56,7 @@ public class Interpreter {
                 return currentUser.canPerformOperations();
 
             case "0":
-                out.display("Logout.");
+                currentUser = bibliotecaAdmin.logout();
                 return currentUser.canPerformOperations();
 
             case "Q":

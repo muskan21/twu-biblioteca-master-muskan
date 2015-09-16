@@ -19,4 +19,8 @@ public class BibliotecaAdmin {
                 return users.get(index);
         return user1;
     }
+
+    public User logout() {
+        return new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
+    }
 }

@@ -225,4 +225,24 @@ public class InterpreterTest {
 
         assertEquals(testString, operation);
     }
+
+    @Test
+    public void shouldReturnGuestUsersOperationWhenLogoutOptionIsSelected() {
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        RolesFactory rolesFactory = new RolesFactory();
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        User user = new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin);
+
+        ArrayList<String> testUserString = interpreter.interpret("0");
+
+        Roles role = rolesFactory.assignOperations(Role.GUEST);
+        assertEquals(role.canPerformOperations().toString(), testUserString.toString());
+    }
 }
