@@ -6,36 +6,9 @@ public class Roles {
     private Role role;
     private ArrayList<String> operations = new ArrayList<String>();
 
-    public Roles(Role role) {
+    public Roles(Role role, ArrayList<String> operations) {
         this.role = role;
-        if(role == Role.GUEST) {
-            operations.add("1");
-            operations.add("2");
-            operations.add("3");
-            operations.add("L");
-            operations.add("Q");
-        }
-        else if(role == Role.CUSTOMER) {
-            operations.add("1");
-            operations.add("2");
-            operations.add("3");
-            operations.add("4");
-            operations.add("5");
-            operations.add("6");
-            operations.add("L");
-            operations.add("Q");
-        }
-        else if(role == Role.LIBRARIAN) {
-            operations.add("1");
-            operations.add("2");
-            operations.add("3");
-            operations.add("4");
-            operations.add("5");
-            operations.add("6");
-            operations.add("7");
-            operations.add("L");
-            operations.add("Q");
-        }
+        this.operations = operations;
     }
 
     public ArrayList<String> canPerformOperations() {

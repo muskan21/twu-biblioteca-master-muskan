@@ -11,7 +11,7 @@ public class UserTest {
     public void shouldBeEqualWhenComparingAUserToItself() {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
-        Roles role = new Roles(Role.GUEST);
+        Roles role = new Roles(Role.GUEST, operations);
         User user = new User("111-1234", "password1", role);
         assertEquals(user, user);
     }
@@ -20,7 +20,7 @@ public class UserTest {
     public void shouldBeEqualWhenComparingAUserToAnotherUserWithSameLibraryNumberAndSameRole() {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
-        Roles role = new Roles(Role.GUEST);
+        Roles role = new Roles(Role.GUEST, operations);
         User user = new User("111-1234", "password1", role);
         User user1 = new User("111-1234", "password2", role);
         assertEquals(user, user1);
@@ -30,7 +30,7 @@ public class UserTest {
     public void shouldNotBeEqualWhenComparingAUserToAnotherUserWithDifferentLibraryNumberButSameRole() {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
-        Roles role = new Roles(Role.GUEST);
+        Roles role = new Roles(Role.GUEST, operations);
         User user = new User("111-1234", "password1", role);
         User user1 = new User("111-1235", "password2", role);
         assertNotEquals(user, user1);
@@ -38,55 +38,74 @@ public class UserTest {
 
     @Test
     public void shouldNotBeEqualWhenComparingAUserToNull() {
-        User user = new User("111-1234", "password1", new Roles(Role.GUEST));
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        User user = new User("111-1234", "password1", new Roles(Role.GUEST, operations));
         assertNotEquals(user, null);
     }
 
     @Test
     public void shouldNotBeEqualWhenComparingAUserToNonUserEntity() {
-        User user = new User("111-1234", "password1", new Roles(Role.GUEST));
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        User user = new User("111-1234", "password1", new Roles(Role.GUEST, operations));
         assertNotEquals(user, "I am Not a User");
     }
 
     @Test
     public void shouldHaveSameHashCodeComparingAUserToItself() {
-        User user = new User("111-1234", "password1", new Roles(Role.GUEST));
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        User user = new User("111-1234", "password1", new Roles(Role.GUEST, operations));
         assertEquals(user.hashCode(), user.hashCode());
     }
 
     @Test
     public void shouldHaveSameHashCodeComparingAUserToAnotherUserWithSameLibraryNumberAndRole() {
-        User user = new User("111-1234", "password1", new Roles(Role.GUEST));
-        User user1 = new User("111-1234", "password2", new Roles(Role.GUEST));
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        User user = new User("111-1234", "password1", new Roles(Role.GUEST, operations));
+        User user1 = new User("111-1234", "password2", new Roles(Role.GUEST, operations));
         assertEquals(user.hashCode(), user1.hashCode());
     }
 
     @Test
     public void shouldReturnTrueIfPasswordsMatch() {
-        User user = new User("111-1234", "password1", new Roles(Role.GUEST));
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        User user = new User("111-1234", "password1", new Roles(Role.GUEST, operations));
 
         assertTrue(user.authenticatePassword("password1"));
     }
 
     @Test
     public void shouldReturnFalseIfPasswordsDoNotMatch() {
-        User user = new User("111-1234", "password1", new Roles(Role.CUSTOMER));
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        User user = new User("111-1234", "password1", new Roles(Role.CUSTOMER, operations));
 
         assertFalse(user.authenticatePassword("password2"));
     }
 
     @Test
     public void theListOfOperationsThatTheUserCanDoIsSameAsThatOfItsRole() {
-        User user = new User("111-1234", "password1", new Roles(Role.CUSTOMER));
-        Roles role = new Roles(Role.CUSTOMER);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        User user = new User("111-1234", "password1", new Roles(Role.CUSTOMER, operations));
+        Roles role = new Roles(Role.CUSTOMER, operations);
 
         assertEquals(role.canPerformOperations(), user.canPerformOperations());
     }
 
     @Test
     public void theListOfOperationsThatTheUserCanDoIsDifferentFromADifferentRole() {
-        User user = new User("111-1234", "password1", new Roles(Role.CUSTOMER));
-        Roles role = new Roles(Role.GUEST);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        User user = new User("111-1234", "password1", new Roles(Role.CUSTOMER, operations));
+        ArrayList<String> operations1 = new ArrayList<String>();
+        operations1.add("1");
+        operations1.add("2");
+        Roles role = new Roles(Role.GUEST, operations1);
 
         assertNotEquals(role.canPerformOperations(), user.canPerformOperations());
     }
