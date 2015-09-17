@@ -20,6 +20,7 @@ public class InterpreterTest {
     public void shouldExitIfExitOptionIsChosen() {
         ArrayList<String> operation = new ArrayList<String>();
         operation.add("1");
+        operation.add("Q");
         User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
         ArrayList<User> users = new ArrayList<User>();
         RolesFactory rolesFactory = new RolesFactory();
@@ -56,6 +57,7 @@ public class InterpreterTest {
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
         ArrayList<String> operation = new ArrayList<String>();
         operation.add("1");
+        operation.add("2");
         User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
         ArrayList<User> users = new ArrayList<User>();
         RolesFactory rolesFactory = new RolesFactory();
@@ -75,6 +77,7 @@ public class InterpreterTest {
         InputConsole inputConsole = mock(InputConsole.class);
         ArrayList<String> operation = new ArrayList<String>();
         operation.add("1");
+        operation.add("4");
         User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
         ArrayList<User> users = new ArrayList<User>();
         RolesFactory rolesFactory = new RolesFactory();
@@ -96,6 +99,7 @@ public class InterpreterTest {
         InputConsole inputConsole = mock(InputConsole.class);
         ArrayList<String> operation = new ArrayList<String>();
         operation.add("1");
+        operation.add("3");
         User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
         ArrayList<User> users = new ArrayList<User>();
         RolesFactory rolesFactory = new RolesFactory();
@@ -117,6 +121,7 @@ public class InterpreterTest {
         InputConsole inputConsole = mock(InputConsole.class);
         ArrayList<String> operation = new ArrayList<String>();
         operation.add("1");
+        operation.add("5");
         User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
         ArrayList<User> users = new ArrayList<User>();
         RolesFactory rolesFactory = new RolesFactory();
@@ -203,6 +208,7 @@ public class InterpreterTest {
         OutputConsole outputConsole = mock(OutputConsole.class);
         ArrayList<String> operation = new ArrayList<String>();
         operation.add("1");
+        operation.add("L");
         User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
         RolesFactory rolesFactory = new RolesFactory();
         ArrayList<User> users = new ArrayList<User>();
@@ -264,5 +270,25 @@ public class InterpreterTest {
 
         Roles role = rolesFactory.assignOperations(Role.GUEST);
         assertEquals(role.canPerformOperations().toString(), testUserString.toString());
+    }
+
+    @Test
+    public void shouldNotAcceptNonGuestUserOperationAsInputIfGuestUserIsLoggedIn() {
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        OutputConsole outputConsole = new OutputConsole(new PrintStream(byteArrayOutputStream));
+        RolesFactory rolesFactory = new RolesFactory();
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin);
+
+        ArrayList<String> testUserString = interpreter.interpret("0");
+
+        assertEquals(byteArrayOutputStream.toString(), "Select A Valid Option!!\n");
     }
 }

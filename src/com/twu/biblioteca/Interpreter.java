@@ -20,6 +20,10 @@ public class Interpreter {
     }
 
     public ArrayList<String> interpret(String inputChoice) {
+        if(!currentUser.canPerformOperations().contains(inputChoice)) {
+            out.display("Select A Valid Option!!");
+            return currentUser.canPerformOperations();
+        }
         switch (inputChoice) {
             case "1":
                 out.display(books.formattedListOfAvailableBooks());
