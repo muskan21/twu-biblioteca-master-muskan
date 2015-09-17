@@ -19,7 +19,8 @@ public class Interpreter {
         this.bibliotecaAdmin = bibliotecaAdmin;
     }
 
-    public ArrayList<String> interpret(String inputChoice) {
+    public ArrayList<String> interpret(String inputChoice1) {
+        String inputChoice = inputChoice1.toUpperCase();
         if(!currentUser.canPerformOperations().contains(inputChoice)) {
             out.display("Select A Valid Option!!");
             return currentUser.canPerformOperations();

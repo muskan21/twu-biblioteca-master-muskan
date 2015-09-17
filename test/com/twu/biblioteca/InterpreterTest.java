@@ -301,4 +301,23 @@ public class InterpreterTest {
 
         assertEquals(byteArrayOutputStream.toString(), "Select A Valid Option!!\n");
     }
+
+    @Test
+    public void shouldRunEvenIfInputIsInLowerCase() {
+        ArrayList<String> operation = new ArrayList<String>();
+        operation.add("1");
+        operation.add("Q");
+        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
+        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
+
+        exit.expectSystemExit();
+
+        interpreter.interpret("q");
+    }
 }
