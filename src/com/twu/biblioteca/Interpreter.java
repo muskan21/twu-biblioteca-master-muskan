@@ -53,6 +53,7 @@ public class Interpreter {
                 return currentUser.canPerformOperations();
 
             case "6":
+                out.display(currentUser.formattedUserDetails());
                 return currentUser.canPerformOperations();
 
             case "7":

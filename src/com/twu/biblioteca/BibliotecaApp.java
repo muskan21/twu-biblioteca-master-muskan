@@ -16,7 +16,7 @@ public class BibliotecaApp {
         OutputConsole outputConsole = new OutputConsole(new PrintStream(System.out));
         InputConsole inputConsole = new InputConsole(new Scanner(System.in));
         RolesFactory rolesFactory = new RolesFactory();
-        User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
+        User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST), "", "", 0);
         ArrayList<User> users = initializeUserList();
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(books, movies, inputConsole, outputConsole, user, bibliotecaAdmin);
@@ -29,12 +29,12 @@ public class BibliotecaApp {
     private static ArrayList<User> initializeUserList() {
         RolesFactory rolesFactory = new RolesFactory();
         ArrayList<User> users = new ArrayList<User>();
-        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
-        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        users.add(new User("123-5680", "password3", rolesFactory.assignOperations(Role.CUSTOMER)));
-        users.add(new User("111-3456", "password4", rolesFactory.assignOperations(Role.LIBRARIAN)));
-        users.add(new User("111-3457", "password5", rolesFactory.assignOperations(Role.LIBRARIAN)));
-        users.add(new User("111-3458", "password6", rolesFactory.assignOperations(Role.LIBRARIAN)));
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "Muskan", "muskan@thoughtworks.com", 9876543));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "Muskan D", "muskand@thoughtworks.com", 77788770));
+        users.add(new User("123-5680", "password3", rolesFactory.assignOperations(Role.CUSTOMER), "Muskan Dh", "muskandh@thoughtworks.com", 8587770));
+        users.add(new User("111-3456", "password4", rolesFactory.assignOperations(Role.LIBRARIAN), "Muskan Dha", "muskandha@gmail.com", 857832240));
+        users.add(new User("111-3457", "password5", rolesFactory.assignOperations(Role.LIBRARIAN), "Muskan Dhanda", "muskandhanda@gmail.com", 767467560));
+        users.add(new User("111-3458", "password6", rolesFactory.assignOperations(Role.LIBRARIAN), "MuskanD", "muskandhanda@thoughtworks.com", 8785470));
         return users;
     }
 

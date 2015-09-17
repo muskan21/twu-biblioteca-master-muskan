@@ -14,8 +14,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldReturnGuestUserWhenLoginCredentialsDoNotMatch() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -23,7 +23,7 @@ public class BibliotecaAdminTest {
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
 
         User libraryNumber = bibliotecaAdmin.login("113-1234", "password3");
-        User testUser = new User("113-1234", "password3", rolesFactory.assignOperations(Role.GUEST));
+        User testUser = new User("113-1234", "password3", rolesFactory.assignOperations(Role.GUEST), "", "", 0);
 
         assertEquals(testUser, libraryNumber);
     }
@@ -31,8 +31,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldReturnGuestUserWhoCanPerformGuestOperationsWhenLoginCredentialsDoNotMatch() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -40,7 +40,7 @@ public class BibliotecaAdminTest {
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
 
         User libraryNumber = bibliotecaAdmin.login("113-1234", "password3");
-        User testUser = new User("113-1234", "password3", rolesFactory.assignOperations(Role.GUEST));
+        User testUser = new User("113-1234", "password3", rolesFactory.assignOperations(Role.GUEST), "", "", 0);
 
         assertEquals(testUser.canPerformOperations(), libraryNumber.canPerformOperations());
     }
@@ -48,8 +48,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldPrintAppropriateMessageWhenLoginIsUnsuccessful() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -65,8 +65,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldReturnLibrarianUserWhenLoginCredentialsOfLibrarianMatch() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -74,7 +74,7 @@ public class BibliotecaAdminTest {
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
 
         User libraryNumber = bibliotecaAdmin.login("012-3212", "password2");
-        User testUser = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User testUser = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
 
         assertEquals(testUser, libraryNumber);
     }
@@ -82,8 +82,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldPrintAppropriateMessageWhenLoginIsSuccessful() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -99,8 +99,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldReturnLibrarianUserPerformingLibrarianOperationsWhenLoginCredentialsOfLibrarianMatch() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -108,7 +108,7 @@ public class BibliotecaAdminTest {
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
 
         User libraryNumber = bibliotecaAdmin.login("012-3212", "password2");
-        User testUser = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User testUser = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
 
         assertEquals(testUser.canPerformOperations(), libraryNumber.canPerformOperations());
     }
@@ -116,8 +116,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldReturnCustomerUserWhenLoginCredentialsOfCustomerMatch() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -125,7 +125,7 @@ public class BibliotecaAdminTest {
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
 
         User libraryNumber = bibliotecaAdmin.login("111-1234", "password1");
-        User testUser = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
+        User testUser = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
 
         assertEquals(testUser, libraryNumber);
     }
@@ -133,8 +133,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldReturnCustomerUserPerformingCustomerOperationsWhenLoginCredentialsOfCustomerMatch() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -142,7 +142,7 @@ public class BibliotecaAdminTest {
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
 
         User libraryNumber = bibliotecaAdmin.login("111-1234", "password1");
-        User testUser = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
+        User testUser = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
 
         assertEquals(testUser.canPerformOperations(), libraryNumber.canPerformOperations());
     }
@@ -150,8 +150,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldReturnGuestUserWhenLibraryNumberOfLibrarianMatchesButPasswordDoesNot() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -159,7 +159,7 @@ public class BibliotecaAdminTest {
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
 
         User libraryNumber = bibliotecaAdmin.login("012-3212", "password3");
-        User testUser = new User("012-3212", "password3", rolesFactory.assignOperations(Role.GUEST));
+        User testUser = new User("012-3212", "password3", rolesFactory.assignOperations(Role.GUEST), "", "", 0);
 
         assertEquals(testUser, libraryNumber);
     }
@@ -167,8 +167,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldReturnGuestUserPerformingGuestOperationsWhenLibraryNumberOfLibrarianMatchesButPasswordDoesNot() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -176,7 +176,7 @@ public class BibliotecaAdminTest {
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
 
         User libraryNumber = bibliotecaAdmin.login("012-3212", "password3");
-        User testUser = new User("012-3212", "password3", rolesFactory.assignOperations(Role.GUEST));
+        User testUser = new User("012-3212", "password3", rolesFactory.assignOperations(Role.GUEST), "", "", 0);
 
         assertEquals(testUser.canPerformOperations(), libraryNumber.canPerformOperations());
     }
@@ -184,8 +184,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldReturnGuestUserOnLogout() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);
@@ -193,7 +193,7 @@ public class BibliotecaAdminTest {
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
 
         User libraryNumber = bibliotecaAdmin.logout();
-        User testUser = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
+        User testUser = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST), "", "", 0);
 
         assertEquals(testUser.canPerformOperations(), libraryNumber.canPerformOperations());
     }
@@ -201,8 +201,8 @@ public class BibliotecaAdminTest {
     @Test
     public void shouldPrintAppropriateLogoutMessageOnLogout() {
         RolesFactory rolesFactory = new RolesFactory();
-        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
-        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN));
+        User user1 = new User("111-1234", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
+        User user2 = new User("012-3212", "password2", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         ArrayList<User> users = new ArrayList<User>();
         users.add(user1);
         users.add(user2);

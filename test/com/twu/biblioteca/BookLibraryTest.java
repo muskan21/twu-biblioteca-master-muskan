@@ -28,7 +28,7 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         bookLibrary.checkOutBook("Harry Potter", user);
         String booklistDetails = bookLibrary.formattedListOfAvailableBooks();
@@ -45,7 +45,7 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         String available = bookLibrary.checkOutBook("Gone girl", user);
 
@@ -60,7 +60,7 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         String available = bookLibrary.checkOutBook("Harry potter", user);
 
@@ -76,7 +76,7 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         String booklistDetails = bookLibrary.formattedListOfAvailableBooks();
 
@@ -95,7 +95,7 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         String listDetails = bookLibrary.formattedListOfAvailableBooks();
 
@@ -114,7 +114,7 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         bookLibrary.checkOutBook("Gone girl", user);
         String returnString = bookLibrary.returnBook("Gone girl", user);
@@ -132,7 +132,7 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         bookLibrary.checkOutBook("Harry Potter", user);
         String returnString = bookLibrary.returnBook("Harry", user);
@@ -150,10 +150,10 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         bookLibrary.checkOutBook("Harry Potter", user);
-        User user1 = new User("123-5678", "password5", new Roles(Role.CUSTOMER, operations));
+        User user1 = new User("123-5678", "password5", new Roles(Role.CUSTOMER, operations), "", "", 0);
         String returnString = bookLibrary.returnBook("Harry Potter", user1);
 
         assertEquals("That is not a valid book to return", returnString);
@@ -169,7 +169,7 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         String returnString = bookLibrary.returnBook("Harry potter", user);
 
@@ -186,7 +186,7 @@ public class BookLibraryTest {
             ArrayList<String> operations = new ArrayList<String>();
             operations.add("1");
             operations.add("2");
-            User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+            User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
             bookLibrary.formattedListOfAvailableBooks();
 
@@ -205,7 +205,7 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
 
         bookLibrary.formattedListOfAvailableBooks();
 
@@ -223,8 +223,8 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
-        User user1 = new User("111-1234", "password1", new Roles(Role.LIBRARIAN, operations));
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
+        User user1 = new User("111-1234", "password1", new Roles(Role.LIBRARIAN, operations), "", "", 0);
         bookLibrary.checkOutBook("Gone girl", user);
         bookLibrary.checkOutBook("harry potter", user1);
 
