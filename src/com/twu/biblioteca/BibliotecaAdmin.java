@@ -26,6 +26,7 @@ public class BibliotecaAdmin {
     }
 
     public User logout() {
+        outputConsole.display("Logout Successful.");
         return new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
     }
 }
