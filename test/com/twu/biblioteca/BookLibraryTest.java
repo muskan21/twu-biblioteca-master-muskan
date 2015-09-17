@@ -176,4 +176,22 @@ public class BookLibraryTest {
 
         assertEquals(user, user1);
     }
+
+    @Test
+    public void shouldReturnNullForTheBookThatHasNotBeenCheckedOut() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+        BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+
+        bookLibrary.formattedListOfAvailableBooks();
+
+        User user1 = bookLibrary.getUserForBook(new Book("Harry Potter", "", 0));
+
+        assertEquals(null, user1);
+    }
 }
