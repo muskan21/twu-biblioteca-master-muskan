@@ -49,4 +49,28 @@ public class MovieLibraryTest {
 
         assertEquals(beforeCheckOutList, afterCheckOutList);
     }
+
+    @Test
+    public void shouldPrintAppropriateMessageWhenSucessfulMovieCheckout() {
+        Movie movie = new Movie("Muskan", 1234, "Woohhoo", "10");
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        movies.add(movie);
+        MovieLibrary movieLibrary = new MovieLibrary(movies);
+
+        String checkOutMessage = movieLibrary.checkOutMovie("Muskan");
+
+        assertEquals("Successful CheckOut.", checkOutMessage);
+    }
+
+    @Test
+    public void shouldPrintAppropriateMessageWhenUnsucessfulMovieCheckout() {
+        Movie movie = new Movie("Muskan", 1234, "Woohhoo", "10");
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        movies.add(movie);
+        MovieLibrary movieLibrary = new MovieLibrary(movies);
+
+        String checkOutMessage = movieLibrary.checkOutMovie("MuskanD");
+
+        assertEquals("Unsuccessful CheckOut.", checkOutMessage);
+    }
 }

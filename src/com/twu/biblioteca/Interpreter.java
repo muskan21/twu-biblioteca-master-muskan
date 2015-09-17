@@ -37,7 +37,7 @@ public class Interpreter {
             case "3":
                 out.display("Enter The Name Of The Movie To Check Out : ");
                 String checkedOutMovie = inputConsole.getInput();
-                movies.checkOutMovie(checkedOutMovie);
+                out.display(movies.checkOutMovie(checkedOutMovie));
                 return currentUser.canPerformOperations();
 
             case "4":

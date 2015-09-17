@@ -20,9 +20,12 @@ public class MovieLibrary {
         return moviesList;
     }
 
-    public void checkOutMovie(String movieName) {
+    public String checkOutMovie(String movieName) {
         Movie movie = new Movie(movieName, UNKNOWN_YEAR, UNKNOWN_DIRECTOR, UNKNOWN_RATING);
-        movieList.remove(movie);
-        return;
+        if(movieList.contains(movie)) {
+            movieList.remove(movie);
+            return "Successful CheckOut.";
+        }
+        return "Unsuccessful CheckOut.";
     }
 }

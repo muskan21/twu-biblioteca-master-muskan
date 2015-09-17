@@ -88,7 +88,7 @@ public class InterpreterTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, outputConsole, user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -111,7 +111,7 @@ public class InterpreterTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
+        Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -134,7 +134,7 @@ public class InterpreterTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, outputConsole, user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
