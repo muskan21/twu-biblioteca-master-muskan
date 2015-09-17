@@ -38,4 +38,9 @@ public class User {
     public ArrayList<String> canPerformOperations() {
         return role.canPerformOperations();
     }
+
+    public String userDetails() {
+        String userDetail = String.format("%-30s", libraryNumber);
+        return userDetail;
+    }
 }

@@ -109,4 +109,16 @@ public class UserTest {
 
         assertNotEquals(role.canPerformOperations(), user.canPerformOperations());
     }
+
+    @Test
+    public void returnTheLibraryNumberOfTheCorrectUserInStringFormat() {
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        User user = new User("111-1234", "password1", new Roles(Role.CUSTOMER, operations));
+
+        String userDetail = user.userDetails();
+
+        String testString = String.format("%-30s","111-1234");
+        assertEquals(testString, userDetail);
+    }
 }
