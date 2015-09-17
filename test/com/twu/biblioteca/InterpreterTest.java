@@ -26,7 +26,8 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         exit.expectSystemExit();
@@ -44,7 +45,8 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         interpreter.interpret("1");
@@ -63,7 +65,8 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         interpreter.interpret("2");
@@ -83,7 +86,8 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
@@ -105,7 +109,8 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
@@ -127,7 +132,8 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
@@ -151,7 +157,8 @@ public class InterpreterTest {
         RolesFactory rolesFactory = new RolesFactory();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin);
 
         interpreter.interpret("Muskan");
@@ -171,7 +178,8 @@ public class InterpreterTest {
         User user = new User("muskan", "password", rolesFactory.assignOperations(Role.CUSTOMER));
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin);
 
         ArrayList<String> testUser = interpreter.interpret("0");
@@ -191,7 +199,8 @@ public class InterpreterTest {
         User user = new User("muskan", "password", rolesFactory.assignOperations(Role.CUSTOMER));
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin);
 
         ArrayList<String> testUser = interpreter.interpret("0");
@@ -214,7 +223,7 @@ public class InterpreterTest {
         ArrayList<User> users = new ArrayList<User>();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("123-5678", "password1");
@@ -238,7 +247,7 @@ public class InterpreterTest {
         ArrayList<User> users = new ArrayList<User>();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin);
 
         when(inputConsole.getInput()).thenReturn("123-5680", "password8");
@@ -262,7 +271,7 @@ public class InterpreterTest {
         ArrayList<User> users = new ArrayList<User>();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         User user = new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER));
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin);
 
@@ -283,7 +292,8 @@ public class InterpreterTest {
         ArrayList<User> users = new ArrayList<User>();
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        OutputConsole outputConsole1 = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole1);
         User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin);
 

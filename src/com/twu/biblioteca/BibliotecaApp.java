@@ -18,7 +18,7 @@ public class BibliotecaApp {
         RolesFactory rolesFactory = new RolesFactory();
         User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
         ArrayList<User> users = initializeUserList();
-        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         Interpreter interpreter = new Interpreter(books, movies, inputConsole, outputConsole, user, bibliotecaAdmin);
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(mainMenu, inputConsole, interpreter, outputConsole, rolesFactory);
 
