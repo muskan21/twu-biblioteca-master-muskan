@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.*;
 
 public class InterpreterTest {
@@ -86,7 +87,7 @@ public class InterpreterTest {
 
         interpreter.interpret("4");
 
-        verify(bookLibrary, times(1)).checkOutBook("gone girl");
+        verify(bookLibrary, times(1)).checkOutBook(anyString(), any(User.class));
     }
 
     @Test
@@ -154,25 +155,44 @@ public class InterpreterTest {
     }
 
     @Test
-    public void shouldPrintTheAppropriateMessageWhenLogoutOptionIsSelected() {
+    public void shouldNotPrintTheCurrentUsersMenuWhenLogoutOptionIsSelected() {
         ArrayList<Book> books = new ArrayList<Book>();
         BookLibrary bookLibrary = new BookLibrary(books);
         InputConsole inputConsole = new InputConsole(new Scanner(System.in));
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         OutputConsole out = new OutputConsole(new PrintStream(output));
-        ArrayList<String> operation = new ArrayList<String>();
-        operation.add("1");
-        User user = new User("muskan", "password", new Roles(Role.GUEST, operation));
         ArrayList<User> users = new ArrayList<User>();
         RolesFactory rolesFactory = new RolesFactory();
+        User user = new User("muskan", "password", rolesFactory.assignOperations(Role.CUSTOMER));
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
         Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin);
 
-        interpreter.interpret("0");
+        ArrayList<String> testUser = interpreter.interpret("0");
 
-        assertEquals("Logout.\n", output.toString());
+        assertNotEquals(testUser.toString(), user.canPerformOperations().toString());
+    }
+
+    @Test
+    public void shouldPrintTheGuestUsersMenuWhenLogoutOptionIsSelected() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        BookLibrary bookLibrary = new BookLibrary(books);
+        InputConsole inputConsole = new InputConsole(new Scanner(System.in));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        OutputConsole out = new OutputConsole(new PrintStream(output));
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        User user = new User("muskan", "password", rolesFactory.assignOperations(Role.CUSTOMER));
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin);
+
+        ArrayList<String> testUser = interpreter.interpret("0");
+        User user1 = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST));
+
+        assertEquals(testUser.toString(), user1.canPerformOperations().toString());
     }
 
     @Test

@@ -25,8 +25,12 @@ public class BookLibraryTest {
         books.add(new Book("Gone Girl","Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
-        bookLibrary.checkOutBook("Harry Potter");
+        bookLibrary.checkOutBook("Harry Potter", user);
         String booklistDetails = bookLibrary.formattedListOfAvailableBooks();
 
         assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", booklistDetails);
@@ -38,8 +42,12 @@ public class BookLibraryTest {
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
-        String available = bookLibrary.checkOutBook("Gone girl");
+        String available = bookLibrary.checkOutBook("Gone girl", user);
 
         assertEquals("Thank You! Enjoy The Book.", available);
     }
@@ -49,8 +57,12 @@ public class BookLibraryTest {
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
-        String available = bookLibrary.checkOutBook("Harry potter");
+        String available = bookLibrary.checkOutBook("Harry potter", user);
 
         assertEquals("That Book Is Not Available!", available);
     }
@@ -61,10 +73,14 @@ public class BookLibraryTest {
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
         String booklistDetails = bookLibrary.formattedListOfAvailableBooks();
 
-        bookLibrary.checkOutBook("Harry Potter");
+        bookLibrary.checkOutBook("Harry Potter", user);
         String booklistDetail = bookLibrary.formattedListOfAvailableBooks();
 
         assertNotEquals(booklistDetails, booklistDetail);
@@ -76,10 +92,14 @@ public class BookLibraryTest {
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
         String listDetails = bookLibrary.formattedListOfAvailableBooks();
 
-        bookLibrary.checkOutBook("Bleh Book");
+        bookLibrary.checkOutBook("Bleh Book", user);
         String listDetail = bookLibrary.formattedListOfAvailableBooks();
 
         assertEquals(listDetails, listDetail);
@@ -91,8 +111,12 @@ public class BookLibraryTest {
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
-        bookLibrary.checkOutBook("Gone girl");
+        bookLibrary.checkOutBook("Gone girl", user);
         String returnString = bookLibrary.returnBook("Gone girl");
 
         assertEquals("Thank You for returning the book.", returnString);
@@ -105,8 +129,12 @@ public class BookLibraryTest {
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
-        bookLibrary.checkOutBook("Harry Potter");
+        bookLibrary.checkOutBook("Harry Potter", user);
         String returnString = bookLibrary.returnBook("Harry");
 
         assertEquals("That is not a valid book to return", returnString);

@@ -1,14 +1,17 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BookLibrary {
     public static final int UNKNOWN_YEAR_PUBLISHED = 0;
     public static final String UNKNOWN_BOOK_AUTHOR = "";
     private ArrayList<Book> bookList;
+    private HashMap<Book, User> bookStatus;
 
     public BookLibrary(ArrayList<Book> bookList) {
         this.bookList = bookList;
+        bookStatus = new HashMap<Book, User>();
     }
 
     public String formattedListOfAvailableBooks() {
@@ -21,12 +24,13 @@ public class BookLibrary {
         return booksList;
     }
 
-    public String checkOutBook(String checkOutBook) {
+    public String checkOutBook(String checkOutBook, User user) {
         boolean checkOutFlag = false;
         Book bookToCheckOut = new Book(checkOutBook, UNKNOWN_BOOK_AUTHOR, UNKNOWN_YEAR_PUBLISHED);
         for(Book book : bookList) {
             if(book.equals(bookToCheckOut) && !(book.checkOutStatus())) {
                 book.checkOutBook();
+                bookStatus.put(book, user);
                 checkOutFlag = true;
                 break;
             }

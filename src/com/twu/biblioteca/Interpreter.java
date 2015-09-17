@@ -38,13 +38,19 @@ public class Interpreter {
             case "4":
                 out.display("Enter The Name Of The Book To Check Out : ");
                 String checkedOutBook = inputConsole.getInput();
-                out.display(books.checkOutBook(checkedOutBook));
+                out.display(books.checkOutBook(checkedOutBook, currentUser));
                 return currentUser.canPerformOperations();
 
             case "5":
                 out.display("Enter The Name Of The Book To Return : ");
                 String returnBook = inputConsole.getInput();
                 out.display(books.returnBook(returnBook));
+                return currentUser.canPerformOperations();
+
+            case "6":
+                return currentUser.canPerformOperations();
+
+            case "7":
                 return currentUser.canPerformOperations();
 
             case "L":
