@@ -25,59 +25,49 @@ public class Interpreter {
             out.display("Select A Valid Option!!");
             return currentUser.canPerformOperations();
         }
-        switch (inputChoice) {
-            case "1":
-                out.display(books.formattedListOfAvailableBooks());
-                return currentUser.canPerformOperations();
-
-            case "2":
-                out.display(movies.formattedListOfAvailableMovies());
-                return currentUser.canPerformOperations();
-
-            case "3":
-                out.display("Enter The Name Of The Movie To Check Out : ");
-                String checkedOutMovie = inputConsole.getInput();
-                out.display(movies.checkOutMovie(checkedOutMovie));
-                return currentUser.canPerformOperations();
-
-            case "4":
-                out.display("Enter The Name Of The Book To Check Out : ");
-                String checkedOutBook = inputConsole.getInput();
-                out.display(books.checkOutBook(checkedOutBook, currentUser));
-                return currentUser.canPerformOperations();
-
-            case "5":
-                out.display("Enter The Name Of The Book To Return : ");
-                String returnBook = inputConsole.getInput();
-                out.display(books.returnBook(returnBook, currentUser));
-                return currentUser.canPerformOperations();
-
-            case "6":
-                out.display(currentUser.formattedUserDetails());
-                return currentUser.canPerformOperations();
-
-            case "7":
-                out.display(books.bookLibraryStatus());
-                return currentUser.canPerformOperations();
-
-            case "L":
-                out.display("Enter Library Number : ");
-                String libraryNumber = inputConsole.getInput();
-                out.display("Enter password : ");
-                String password = inputConsole.getInput();
-                currentUser = bibliotecaAdmin.login(libraryNumber, password);
-                return currentUser.canPerformOperations();
-
-            case "0":
-                currentUser = bibliotecaAdmin.logout();
-                return currentUser.canPerformOperations();
-
-            case "Q":
-                System.exit(0);
-
-            default:
-                out.display("Select A Valid Option!!");
-                return currentUser.canPerformOperations();
+        if(inputChoice.equals("1")) {
+            out.display(books.formattedListOfAvailableBooks());
         }
+        else if(inputChoice.equals("2")) {
+            out.display(movies.formattedListOfAvailableMovies());
+        }
+        else if(inputChoice.equals("3")) {
+            out.display("Enter The Name Of The Movie To Check Out : ");
+            String checkedOutMovie = inputConsole.getInput();
+            out.display(movies.checkOutMovie(checkedOutMovie));
+        }
+        else if(inputChoice.equals("4")) {
+            out.display("Enter The Name Of The Book To Check Out : ");
+            String checkedOutBook = inputConsole.getInput();
+            out.display(books.checkOutBook(checkedOutBook, currentUser));
+        }
+        else if(inputChoice.equals("5")) {
+            out.display("Enter The Name Of The Book To Return : ");
+            String returnBook = inputConsole.getInput();
+            out.display(books.returnBook(returnBook, currentUser));
+        }
+        else if(inputChoice.equals("6")) {
+            out.display(currentUser.formattedUserDetails());
+        }
+        else if(inputChoice.equals("7")) {
+            out.display(books.bookLibraryStatus());
+        }
+        else if(inputChoice.equals("L")) {
+            out.display("Enter Library Number : ");
+            String libraryNumber = inputConsole.getInput();
+            out.display("Enter password : ");
+            String password = inputConsole.getInput();
+            currentUser = bibliotecaAdmin.login(libraryNumber, password);
+        }
+        else if(inputChoice.equals("0")) {
+            currentUser = bibliotecaAdmin.logout();
+        }
+        else if(inputChoice.equals("Q")) {
+            System.exit(0);
+        }
+        else {
+            out.display("Select A Valid Option!!");
+        }
+        return currentUser.canPerformOperations();
     }
 }
