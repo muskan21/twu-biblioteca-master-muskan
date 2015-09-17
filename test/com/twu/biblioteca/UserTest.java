@@ -118,7 +118,7 @@ public class UserTest {
 
         String userDetail = user.userDetails();
 
-        String testString = String.format("%-30s","111-1234");
+        String testString = String.format("%-30s ","111-1234");
         assertEquals(testString, userDetail);
     }
 }

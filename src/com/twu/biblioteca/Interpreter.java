@@ -56,6 +56,7 @@ public class Interpreter {
                 return currentUser.canPerformOperations();
 
             case "7":
+                out.display(books.bookLibraryStatus());
                 return currentUser.canPerformOperations();
 
             case "L":

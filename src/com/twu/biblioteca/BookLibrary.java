@@ -47,6 +47,7 @@ public class BookLibrary {
         for(Book book : bookList) {
             if(book.equals(returnedBook) && book.checkOutStatus()) {
                 if(getUserForBook(book) != null && getUserForBook(book).equals(user)) {
+                    bookStatus.remove(book);
                     book.returnBook();
                     returnFlag = true;
                     break;
@@ -61,5 +62,16 @@ public class BookLibrary {
 
     User getUserForBook(Book book) {
         return bookStatus.get(book);
+    }
+
+    public String bookLibraryStatus() {
+        String libraryStatus = String.format("%-30s %-30s %-30s %-30s\n\n","User" , "Book Name", "Book Author", "Year Of Publish");
+        for(Book book : bookList){
+            if(getUserForBook(book) != null) {
+                libraryStatus += getUserForBook(book).userDetails();
+                libraryStatus += book.formattedBookDetails();
+            }
+        }
+        return libraryStatus;
     }
 }

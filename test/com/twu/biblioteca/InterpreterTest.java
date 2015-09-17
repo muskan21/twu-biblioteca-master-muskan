@@ -320,4 +320,24 @@ public class InterpreterTest {
 
         interpreter.interpret("q");
     }
+
+    @Test
+    public void shouldInvokeLibraryStatusMethodCallForTheSelectedOption() {
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        ArrayList<User> users = new ArrayList<User>();
+        RolesFactory rolesFactory = new RolesFactory();
+        users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER)));
+        users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER)));
+        User user = new User("muskan", "password", rolesFactory.assignOperations(Role.LIBRARIAN));
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
+        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, outputConsole, user, bibliotecaAdmin);
+
+        when(inputConsole.getInput()).thenReturn("gone girl");
+
+        interpreter.interpret("7");
+
+        verify(bookLibrary, times(1)).bookLibraryStatus();
+    }
 }

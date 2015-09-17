@@ -40,7 +40,7 @@ public class User {
     }
 
     public String userDetails() {
-        String userDetail = String.format("%-30s", libraryNumber);
+        String userDetail = String.format("%-30s ", libraryNumber);
         return userDetail;
     }
 }

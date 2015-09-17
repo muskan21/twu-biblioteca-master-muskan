@@ -213,4 +213,24 @@ public class BookLibraryTest {
 
         assertEquals(null, user1);
     }
+
+    @Test
+    public void shouldReturnLibraryCheckoutDetails() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+        BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+        User user1 = new User("111-1234", "password1", new Roles(Role.LIBRARIAN, operations));
+        bookLibrary.checkOutBook("Gone girl", user);
+        bookLibrary.checkOutBook("harry potter", user1);
+
+        String bookDetails = bookLibrary.bookLibraryStatus();
+
+        String testString = String.format("%-30s %-30s %-30s %-30s\n\n%-30s %-30s %-30s %-30d\n%-30s %-30s %-30s %-30d\n", "User", "Book Name", "Book Author", "Year Of Publish", "123-1234", "Gone Girl", "Gillian Flynn", 2012, "111-1234", "Harry Potter", "J.K. Rowling", 2000);
+        assertEquals(testString, bookDetails);
+    }
 }
