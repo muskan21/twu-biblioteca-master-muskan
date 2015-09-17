@@ -142,6 +142,25 @@ public class BookLibraryTest {
     }
 
     @Test
+    public void doesNotHaveTheNewListOfAvailableBooksIfValidBookIsReturnedByInvalidUser() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+        books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+        BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+
+        bookLibrary.checkOutBook("Harry Potter", user);
+        User user1 = new User("123-5678", "password5", new Roles(Role.CUSTOMER, operations));
+        String returnString = bookLibrary.returnBook("Harry Potter", user1);
+
+        assertEquals("That is not a valid book to return", returnString);
+        System.setOut(System.out);
+    }
+
+    @Test
     public void doesNotReturnTheBookIfAlreadyAvailableBookIsReturned() {
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));

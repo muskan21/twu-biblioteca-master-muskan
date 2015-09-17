@@ -46,9 +46,11 @@ public class BookLibrary {
         boolean returnFlag = false;
         for(Book book : bookList) {
             if(book.equals(returnedBook) && book.checkOutStatus()) {
-                book.returnBook();
-                returnFlag = true;
-                break;
+                if(getUserForBook(book) != null && getUserForBook(book).equals(user)) {
+                    book.returnBook();
+                    returnFlag = true;
+                    break;
+                }
             }
         }
         if(returnFlag)
