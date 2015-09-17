@@ -41,7 +41,7 @@ public class BookLibrary {
             return "That Book Is Not Available!";
     }
 
-    public String returnBook(String bookName) {
+    public String returnBook(String bookName, User user) {
         Book returnedBook = new Book(bookName, UNKNOWN_BOOK_AUTHOR, UNKNOWN_YEAR_PUBLISHED);
         boolean returnFlag = false;
         for(Book book : bookList) {
@@ -55,5 +55,9 @@ public class BookLibrary {
             return "Thank You for returning the book.";
         else
             return "That is not a valid book to return";
+    }
+
+    User getUserForBook(Book book) {
+        return bookStatus.get(book);
     }
 }

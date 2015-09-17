@@ -117,7 +117,7 @@ public class BookLibraryTest {
         User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
         bookLibrary.checkOutBook("Gone girl", user);
-        String returnString = bookLibrary.returnBook("Gone girl");
+        String returnString = bookLibrary.returnBook("Gone girl", user);
 
         assertEquals("Thank You for returning the book.", returnString);
         System.setOut(System.out);
@@ -135,7 +135,7 @@ public class BookLibraryTest {
         User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
         bookLibrary.checkOutBook("Harry Potter", user);
-        String returnString = bookLibrary.returnBook("Harry");
+        String returnString = bookLibrary.returnBook("Harry", user);
 
         assertEquals("That is not a valid book to return", returnString);
         System.setOut(System.out);
@@ -147,10 +147,33 @@ public class BookLibraryTest {
         books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
         books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
         BookLibrary bookLibrary = new BookLibrary(books);
+        ArrayList<String> operations = new ArrayList<String>();
+        operations.add("1");
+        operations.add("2");
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
 
-        String returnString = bookLibrary.returnBook("Harry potter");
+        String returnString = bookLibrary.returnBook("Harry potter", user);
 
         assertEquals("That is not a valid book to return", returnString);
         System.setOut(System.out);
+    }
+
+    @Test
+    public void shouldReturnTheCorrectUserForTheBookCheckedOut() {
+            ArrayList<Book> books = new ArrayList<Book>();
+            books.add(new Book("Gone Girl", "Gillian Flynn", 2012));
+            books.add(new Book("Harry Potter", "J.K. Rowling", 2000));
+            BookLibrary bookLibrary = new BookLibrary(books);
+            ArrayList<String> operations = new ArrayList<String>();
+            operations.add("1");
+            operations.add("2");
+            User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations));
+
+            bookLibrary.formattedListOfAvailableBooks();
+
+            bookLibrary.checkOutBook("Harry Potter", user);
+            User user1 = bookLibrary.getUserForBook(new Book("Harry Potter", "", 0));
+
+        assertEquals(user, user1);
     }
 }

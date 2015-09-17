@@ -134,7 +134,7 @@ public class InterpreterTest {
 
         interpreter.interpret("5");
 
-        verify(bookLibrary, times(1)).returnBook("gone girl");
+        verify(bookLibrary, times(1)).returnBook(anyString(), any(User.class));
     }
 
     @Test
