@@ -15,7 +15,7 @@ public class Book {
     }
 
     public String formattedBookDetails() {
-        return String.format("%-30s %-30s %-30s\n", bookName, bookAuthor, yearPublished);
+        return String.format("%-25s %-25s %-25s\n", bookName, bookAuthor, yearPublished);
     }
 
     @Override

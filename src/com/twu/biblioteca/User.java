@@ -49,12 +49,12 @@ public class User {
     }
 
     public String userDetails() {
-        String userDetail = String.format("%-30s ", libraryNumber);
+        String userDetail = String.format("%-25s %-25s %-25s %-25d", libraryNumber, username, email, contactNumber);
         return userDetail;
     }
 
     public String formattedUserDetails() {
-        String userDetails = String.format("%-30s %-30s %-30s %-30s\n\n%-30s %-30s %-30s %-30d\n", "Library Number", "User name", "Email", "Contact number", libraryNumber, username, email, contactNumber);
+        String userDetails = String.format("%-25s %-25s %-25s %-25s\n\n%-25s %-25s %-25s %-25d\n", "Library Number", "User name", "Email", "Contact number", libraryNumber, username, email, contactNumber);
         return userDetails;
     }
 }

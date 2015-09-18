@@ -118,7 +118,7 @@ public class UserTest {
 
         String userDetail = user.userDetails();
 
-        String testString = String.format("%-30s ","111-1234");
+        String testString = String.format("%-25s %-25s %-25s %-25d","111-1234", "muskan", "muskan@gmail.com", 9876543);
         assertEquals(testString, userDetail);
     }
 
@@ -130,7 +130,7 @@ public class UserTest {
 
         String userDetail = user.formattedUserDetails();
 
-        String testString = String.format("%-30s %-30s %-30s %-30s\n\n%-30s %-30s %-30s %-30d\n", "Library Number", "User name", "Email", "Contact number", "111-1234", "muskan", "muskan@gmail.com", 9876543);
+        String testString = String.format("%-25s %-25s %-25s %-25s\n\n%-25s %-25s %-25s %-25d\n", "Library Number", "User name", "Email", "Contact number", "111-1234", "muskan", "muskan@gmail.com", 9876543);
         assertEquals(testString, userDetail);
     }
 }

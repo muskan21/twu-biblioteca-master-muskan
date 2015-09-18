@@ -12,7 +12,7 @@ public class BookTest {
 
         String bookDetails = book.formattedBookDetails();
 
-        assertEquals("Christmas Carol                Charles Dickens                1843                          \n", bookDetails);
+        assertEquals("Christmas Carol           Charles Dickens           1843                     \n", bookDetails);
     }
 
     @Test

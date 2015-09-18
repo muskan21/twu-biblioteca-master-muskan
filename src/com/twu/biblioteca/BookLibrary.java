@@ -18,7 +18,7 @@ public class BookLibrary {
     }
 
     public String formattedListOfAvailableBooks() {
-        String booksList = String.format("%-30s %-30s %-30s\n\n", "Book Name", "Book Author", "Year Of Publish");
+        String booksList = String.format("%-25s %-25s %-25s\n\n", "Book Name", "Book Author", "Year Of Publish");
         for(Book book : bookList) {
             if(!book.checkOutStatus()) {
                 booksList += book.formattedBookDetails();
@@ -68,7 +68,7 @@ public class BookLibrary {
     }
 
     public String bookLibraryStatus() {
-        String libraryStatus = String.format("%-30s %-30s %-30s %-30s\n\n","User" , "Book Name", "Book Author", "Year Of Publish");
+        String libraryStatus = String.format("%-25s %-25s %-25s %-25s %-25s %-25s %-25s\n\n","Library Number", "User name", "Email", "Contact Number", "Book Name", "Book Author", "Year Of Publish");
         for(Book book : bookList){
             if(getUserForBook(book) != null) {
                 libraryStatus += getUserForBook(book).userDetails();

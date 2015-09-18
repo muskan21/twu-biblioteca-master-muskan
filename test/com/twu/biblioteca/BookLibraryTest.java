@@ -16,7 +16,7 @@ public class BookLibraryTest {
 
         String booklistDetails = bookLibrary.formattedListOfAvailableBooks();
 
-        assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", booklistDetails);
+        assertEquals("Book Name                 Book Author               Year Of Publish          \n\nGone Girl                 Gillian Flynn             2012                     \n", booklistDetails);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class BookLibraryTest {
         bookLibrary.checkOutBook("Harry Potter", user);
         String booklistDetails = bookLibrary.formattedListOfAvailableBooks();
 
-        assertEquals("Book Name                      Book Author                    Year Of Publish               \n\nGone Girl                      Gillian Flynn                  2012                          \n", booklistDetails);
+        assertEquals("Book Name                 Book Author               Year Of Publish          \n\nGone Girl                 Gillian Flynn             2012                     \n", booklistDetails);
         System.setOut(System.out);
     }
 
@@ -223,14 +223,14 @@ public class BookLibraryTest {
         ArrayList<String> operations = new ArrayList<String>();
         operations.add("1");
         operations.add("2");
-        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "", "", 0);
-        User user1 = new User("111-1234", "password1", new Roles(Role.LIBRARIAN, operations), "", "", 0);
+        User user = new User("123-1234", "password", new Roles(Role.CUSTOMER, operations), "user1", "user1@gmail.com", 6654378);
+        User user1 = new User("111-1234", "password1", new Roles(Role.LIBRARIAN, operations), "user2", "user2@gmail.com", 6364677);
         bookLibrary.checkOutBook("Gone girl", user);
         bookLibrary.checkOutBook("harry potter", user1);
 
         String bookDetails = bookLibrary.bookLibraryStatus();
 
-        String testString = String.format("%-30s %-30s %-30s %-30s\n\n%-30s %-30s %-30s %-30d\n%-30s %-30s %-30s %-30d\n", "User", "Book Name", "Book Author", "Year Of Publish", "123-1234", "Gone Girl", "Gillian Flynn", 2012, "111-1234", "Harry Potter", "J.K. Rowling", 2000);
+        String testString = String.format("%-25s %-25s %-25s %-25s %-25s %-25s %-25s\n\n%-25s %-25s %-25s %-25d%-25s %-25s %-25d\n%-25s %-25s %-25s %-25d%-25s %-25s %-25d\n", "Library Number", "User name", "Email", "Contact Number", "Book Name", "Book Author", "Year Of Publish", "123-1234", "user1", "user1@gmail.com", 6654378, "Gone Girl", "Gillian Flynn", 2012, "111-1234", "user2", "user2@gmail.com", 6364677, "Harry Potter", "J.K. Rowling", 2000);
         assertEquals(testString, bookDetails);
     }
 }
