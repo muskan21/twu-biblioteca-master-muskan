@@ -1,3 +1,6 @@
+/*Resposible for creating the different role pairs for role-operationSet so that a specific role can perform
+only a specific set of pre defined operations
+*/
 package com.twu.biblioteca;
 
 import java.util.ArrayList;

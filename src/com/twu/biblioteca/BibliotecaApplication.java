@@ -1,3 +1,4 @@
+//prints the welcome message on starting the application and invokes different methods for displaying and getting input for menu and then interpreting the same.
 package com.twu.biblioteca;
 
 import java.util.ArrayList;

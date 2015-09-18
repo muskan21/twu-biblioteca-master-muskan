@@ -1,3 +1,6 @@
+/*Has the list of books and the users that have checked out books, and is responsible for checkout and checking in the books from the library,
+providing printable formatted details of all the books in the library and giving details to the librarian about who has checked out which book.
+ */
 package com.twu.biblioteca;
 
 import java.util.ArrayList;

@@ -1,3 +1,4 @@
+//Has a role and an associated set of operations that a user of that role can perform.
 package com.twu.biblioteca;
 
 import java.util.ArrayList;

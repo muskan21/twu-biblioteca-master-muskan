@@ -1,3 +1,4 @@
+//Has the book details and is responsible to set the checkout status of the book and provide printable formatted details of the book.
 package com.twu.biblioteca;
 
 public class Book {

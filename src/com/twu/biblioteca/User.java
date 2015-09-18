@@ -1,3 +1,6 @@
+/*Has all the details related to a specific user and is responsible for providing the formatted user details
+and authenticate if a given password is the same as its own.
+ */
 package com.twu.biblioteca;
 
 import java.util.ArrayList;

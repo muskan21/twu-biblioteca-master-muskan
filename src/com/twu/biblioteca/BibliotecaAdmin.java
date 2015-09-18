@@ -1,3 +1,4 @@
+//Has a list of registered users and is reponsible for logging in and logging out the users
 package com.twu.biblioteca;
 
 import java.util.ArrayList;

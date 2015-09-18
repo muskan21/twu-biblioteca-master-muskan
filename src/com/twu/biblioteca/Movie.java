@@ -1,3 +1,4 @@
+//Has all the details about a movie and is responsible for providing the formatted printable details of the movie.
 package com.twu.biblioteca;
 
 public class Movie {

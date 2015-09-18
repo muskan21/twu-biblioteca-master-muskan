@@ -1,3 +1,6 @@
+/*Has the list of all movies available in the system and is responsible for checking out a movie from the library
+and providing a printable formatted detail of the movie library.
+ */
 package com.twu.biblioteca;
 
 import java.util.ArrayList;

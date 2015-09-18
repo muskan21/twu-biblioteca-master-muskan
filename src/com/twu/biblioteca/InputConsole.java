@@ -1,3 +1,4 @@
+//Responsible for taking input from the console.
 package com.twu.biblioteca;
 
 import java.util.Scanner;
