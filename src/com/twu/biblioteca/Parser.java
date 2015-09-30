@@ -9,8 +9,8 @@ public class Parser {
     }
 
     public MenuOptions parse(String input) {
-        if("2".equals(input))
-            return new InvalidOption("Select A Valid Option.");
-        return new ListBooksOption(books);
+        if("1".equals(input))
+            return new ListBooksOption(books);
+        return new InvalidOption("Select A Valid Option.");
     }
 }
