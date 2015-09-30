@@ -8,7 +8,7 @@ public class ListBooksOption implements MenuOptions {
     }
 
     public String execute() {
-        String bookList = String.format("%-25s %-25s %-25d\n%-25s %-25s %-25d\n", "Muskan", "Author", 123, "Muskan Dhanda", "Author Same", 1234);
+        String bookList = books.formattedListOfAvailableBooks();
         return bookList;
     }
 }
