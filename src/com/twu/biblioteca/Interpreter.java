@@ -10,14 +10,16 @@ public class Interpreter {
     private OutputConsole out;
     private User currentUser;
     private BibliotecaAdmin bibliotecaAdmin;
+    private Parser parser;
 
-    public Interpreter(BookLibrary books, MovieLibrary movies, InputConsole inputConsole, OutputConsole out, User currentUser, BibliotecaAdmin bibliotecaAdmin) {
+    public Interpreter(BookLibrary books, MovieLibrary movies, InputConsole inputConsole, OutputConsole out, User currentUser, BibliotecaAdmin bibliotecaAdmin, Parser parser) {
         this.books = books;
         this.movies = movies;
         this.inputConsole = inputConsole;
         this.out = out;
         this.currentUser = currentUser;
         this.bibliotecaAdmin = bibliotecaAdmin;
+        this.parser = parser;
     }
 
     public ArrayList<String> interpret(String inputChoice1) {
@@ -27,7 +29,8 @@ public class Interpreter {
             return currentUser.canPerformOperations();
         }
         if(inputChoice.equals("1")) {
-            out.display(books.formattedListOfAvailableBooks());
+            MenuOptions menuOptions = parser.parse(inputChoice);
+            out.display(menuOptions.execute());
         }
         else if(inputChoice.equals("2")) {
             out.display(movies.formattedListOfAvailableMovies());
