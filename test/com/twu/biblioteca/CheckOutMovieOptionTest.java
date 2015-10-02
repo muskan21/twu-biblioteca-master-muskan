@@ -8,9 +8,8 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Matchers.matches;
+import static org.mockito.Mockito.*;
 
 public class CheckOutMovieOptionTest {
 
@@ -37,5 +36,18 @@ public class CheckOutMovieOptionTest {
         checkOutMovieOption.execute();
 
         verify(inputConsole, times(1)).getInput();
+    }
+
+    @Test
+    public void shouldInvokeTheCheckOutMovieMethodWithTheGivenInput() {
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        CheckOutMovieOption checkOutMovieOption = new CheckOutMovieOption(outputConsole, inputConsole, movieLibrary);
+
+        when(inputConsole.getInput()).thenReturn("Muskan");
+        checkOutMovieOption.execute();
+
+        verify(movieLibrary, times(1)).checkOutMovie("Muskan");
     }
 }
