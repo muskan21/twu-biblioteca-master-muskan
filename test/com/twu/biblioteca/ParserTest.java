@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.mockito.Mockito.mock;
 
 public class ParserTest {
 
@@ -15,7 +16,8 @@ public class ParserTest {
         books.add(new Book("Muskan", "Author", 123));
         books.add(new Book("Muskan Dhanda", "Author Same", 1234));
         BookLibrary bookLibrary = new BookLibrary(books);
-        Parser parser = new Parser(bookLibrary);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
 
         MenuOptions menuOptions = parser.parse("1");
 
@@ -28,7 +30,8 @@ public class ParserTest {
         books.add(new Book("Muskan", "Author", 123));
         books.add(new Book("Muskan Dhanda", "Author Same", 1234));
         BookLibrary bookLibrary = new BookLibrary(books);
-        Parser parser = new Parser(bookLibrary);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
 
         MenuOptions menuOptions = parser.parse("1");
 
@@ -36,28 +39,44 @@ public class ParserTest {
     }
 
     @Test
-    public void shouldReturnInvalidOptionObjectIfInputIs2() {
+    public void shouldReturnInvalidOptionObjectIfInputIs3() {
         ArrayList<Book> books = new ArrayList<>();
         books.add(new Book("Muskan", "Author", 123));
         books.add(new Book("Muskan Dhanda", "Author Same", 1234));
         BookLibrary bookLibrary = new BookLibrary(books);
-        Parser parser = new Parser(bookLibrary);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
 
-        MenuOptions menuOptions = parser.parse("2");
+        MenuOptions menuOptions = parser.parse("3");
 
         assertEquals(menuOptions.getClass(), InvalidOption.class);
     }
 
     @Test
-    public void shouldReturnInvalidOptionObjectIfInputIsNot1() {
+    public void shouldReturnInvalidOptionObjectIfInputIsNot1Or2() {
         ArrayList<Book> books = new ArrayList<>();
         books.add(new Book("Muskan", "Author", 123));
         books.add(new Book("Muskan Dhanda", "Author Same", 1234));
         BookLibrary bookLibrary = new BookLibrary(books);
-        Parser parser = new Parser(bookLibrary);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
 
-        MenuOptions menuOptions = parser.parse("Not 1");
+        MenuOptions menuOptions = parser.parse("Not 1 Or 2");
 
         assertEquals(menuOptions.getClass(), InvalidOption.class);
+    }
+
+    @Test
+    public void shouldReturnListMoviesOptionObjectOnInputBeing2() {
+        ArrayList<Movie> movies = new ArrayList<>();
+        movies.add(new Movie("Muskan D", 1234, "Director", "10"));
+        movies.add(new Movie("Muskan Dhanda", 123, "Director Same", "unrated"));
+        MovieLibrary movieLibrary = new MovieLibrary(movies);
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+
+        MenuOptions menuOptions = parser.parse("2");
+
+        assertEquals(menuOptions.getClass(), ListMoviesOption.class);
     }
 }

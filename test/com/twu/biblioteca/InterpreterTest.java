@@ -29,8 +29,9 @@ public class InterpreterTest {
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         BookLibrary bookLibrary = new BookLibrary(new ArrayList<Book>());
-        Parser parser = new Parser(bookLibrary);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin, parser);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin, parser);
 
         exit.expectSystemExit();
 
@@ -72,7 +73,7 @@ public class InterpreterTest {
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         BookLibrary bookLibrary = new BookLibrary(new ArrayList<Book>());
-        Parser parser = new Parser(bookLibrary);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin, parser);
 
         interpreter.interpret("2");
@@ -94,8 +95,9 @@ public class InterpreterTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(bookLibrary);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, outputConsole, user, bibliotecaAdmin, parser);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -119,7 +121,7 @@ public class InterpreterTest {
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         BookLibrary bookLibrary = new BookLibrary(new ArrayList<Book>());
-        Parser parser = new Parser(bookLibrary);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
@@ -143,8 +145,9 @@ public class InterpreterTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(bookLibrary);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, outputConsole, user, bibliotecaAdmin, parser);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -169,8 +172,9 @@ public class InterpreterTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(bookLibrary);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin, parser);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, out, user, bibliotecaAdmin, parser);
 
         interpreter.interpret("Muskan");
 
@@ -191,8 +195,9 @@ public class InterpreterTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(bookLibrary);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin, parser);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, out, user, bibliotecaAdmin, parser);
 
         ArrayList<String> testUser = interpreter.interpret("0");
 
@@ -213,8 +218,9 @@ public class InterpreterTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(bookLibrary);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, out, user, bibliotecaAdmin, parser);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, out, user, bibliotecaAdmin, parser);
 
         ArrayList<String> testUser = interpreter.interpret("0");
         User user1 = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST), "", "", 0);
@@ -237,7 +243,7 @@ public class InterpreterTest {
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(bookLibrary);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
 
         when(inputConsole.getInput()).thenReturn("123-5678", "password1");
@@ -262,7 +268,7 @@ public class InterpreterTest {
         users.add(new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(bookLibrary);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
 
         when(inputConsole.getInput()).thenReturn("123-5680", "password8");
@@ -288,7 +294,7 @@ public class InterpreterTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         User user = new User("123-5678", "password1", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0);
-        Parser parser = new Parser(bookLibrary);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
 
         ArrayList<String> testUserString = interpreter.interpret("0");
@@ -311,7 +317,7 @@ public class InterpreterTest {
         OutputConsole outputConsole1 = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole1);
         User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST), "", "", 0);
-        Parser parser = new Parser(bookLibrary);
+        Parser parser = new Parser(bookLibrary, movieLibrary);
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
 
         ArrayList<String> testUserString = interpreter.interpret("0");
@@ -332,8 +338,9 @@ public class InterpreterTest {
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         BookLibrary bookLibrary = new BookLibrary(new ArrayList<Book>());
-        Parser parser = new Parser(bookLibrary);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin, parser);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin, parser);
 
         exit.expectSystemExit();
 
@@ -351,8 +358,9 @@ public class InterpreterTest {
         User user = new User("muskan", "password", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0);
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(bookLibrary);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, outputConsole, user, bibliotecaAdmin, parser);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
 
         when(inputConsole.getInput()).thenReturn("gone girl");
 
@@ -372,8 +380,9 @@ public class InterpreterTest {
         User user = mock(User.class);
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(bookLibrary);
-        Interpreter interpreter = new Interpreter(bookLibrary, new MovieLibrary(new ArrayList<Movie>()), inputConsole, outputConsole, user, bibliotecaAdmin, parser);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
 
         ArrayList<String> arrayList = new ArrayList<String>();
         arrayList.add("6");

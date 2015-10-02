@@ -20,7 +20,7 @@ public class BibliotecaApp {
         User user = new User("123-1234", "password", rolesFactory.assignOperations(Role.GUEST), "", "", 0);
         ArrayList<User> users = initializeUserList();
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
-        Parser parser = new Parser(books);
+        Parser parser = new Parser(books, movies);
         Interpreter interpreter = new Interpreter(books, movies, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(mainMenu, inputConsole, interpreter, outputConsole, rolesFactory);
 
