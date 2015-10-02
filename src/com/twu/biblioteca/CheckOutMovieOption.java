@@ -15,6 +15,6 @@ public class CheckOutMovieOption implements MenuOptions {
         outputConsole.display("Enter The Name Of The Movie To Check Out : ");
         String checkoutMovie = inputConsole.getInput();
         String checkOutMessage = movies.checkOutMovie(checkoutMovie);
-        return "CheckOutMessage";
+        return checkOutMessage;
     }
 }

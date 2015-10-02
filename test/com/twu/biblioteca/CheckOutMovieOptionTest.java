@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -63,5 +64,18 @@ public class CheckOutMovieOptionTest {
         String checkoutMessage = checkOutMovieOption.execute();
 
         assertEquals("CheckOutMessage", checkoutMessage);
+    }
+
+    @Test
+    public void shouldReturnAppropriateCheckoutMessage() {
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
+        CheckOutMovieOption checkOutMovieOption = new CheckOutMovieOption(outputConsole, inputConsole, movieLibrary);
+
+        when(inputConsole.getInput()).thenReturn("Muskan");
+        String checkoutMessage = checkOutMovieOption.execute();
+
+        assertEquals("Unsuccessful CheckOut.", checkoutMessage);
     }
 }
