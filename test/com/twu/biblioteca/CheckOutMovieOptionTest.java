@@ -50,4 +50,18 @@ public class CheckOutMovieOptionTest {
 
         verify(movieLibrary, times(1)).checkOutMovie("Muskan");
     }
+
+    @Test
+    public void shouldReturnCheckoutMessage() {
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        CheckOutMovieOption checkOutMovieOption = new CheckOutMovieOption(outputConsole, inputConsole, movieLibrary);
+
+        when(inputConsole.getInput()).thenReturn("Muskan");
+        when(movieLibrary.checkOutMovie("Muskan")).thenReturn("CheckOutMessage");
+        String checkoutMessage = checkOutMovieOption.execute();
+
+        assertEquals("CheckOutMessage", checkoutMessage);
+    }
 }
