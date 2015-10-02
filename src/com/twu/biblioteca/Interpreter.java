@@ -7,16 +7,16 @@ public class Interpreter {
     private BookLibrary books;
     private MovieLibrary movies;
     private InputConsole inputConsole;
-    private OutputConsole out;
+    private OutputConsole outputConsole;
     private User currentUser;
     private BibliotecaAdmin bibliotecaAdmin;
     private Parser parser;
 
-    public Interpreter(BookLibrary books, MovieLibrary movies, InputConsole inputConsole, OutputConsole out, User currentUser, BibliotecaAdmin bibliotecaAdmin, Parser parser) {
+    public Interpreter(BookLibrary books, MovieLibrary movies, InputConsole inputConsole, OutputConsole outputConsole, User currentUser, BibliotecaAdmin bibliotecaAdmin, Parser parser) {
         this.books = books;
         this.movies = movies;
         this.inputConsole = inputConsole;
-        this.out = out;
+        this.outputConsole = outputConsole;
         this.currentUser = currentUser;
         this.bibliotecaAdmin = bibliotecaAdmin;
         this.parser = parser;
@@ -25,41 +25,41 @@ public class Interpreter {
     public ArrayList<String> interpret(String inputChoice1) {
         String inputChoice = inputChoice1.toUpperCase();
         if(!currentUser.canPerformOperations().contains(inputChoice)) {
-            out.display("Select A Valid Option!!");
+            outputConsole.display("Select A Valid Option!!");
             return currentUser.canPerformOperations();
         }
         if(inputChoice.equals("1")) {
             MenuOptions menuOptions = parser.parse(inputChoice);
-            out.display(menuOptions.execute());
+            outputConsole.display(menuOptions.execute());
         }
         else if(inputChoice.equals("2")) {
-            out.display(movies.formattedListOfAvailableMovies());
+            outputConsole.display(movies.formattedListOfAvailableMovies());
         }
         else if(inputChoice.equals("3")) {
-            out.display("Enter The Name Of The Movie To Check Out : ");
+            outputConsole.display("Enter The Name Of The Movie To Check Out : ");
             String checkedOutMovie = inputConsole.getInput();
-            out.display(movies.checkOutMovie(checkedOutMovie));
+            outputConsole.display(movies.checkOutMovie(checkedOutMovie));
         }
         else if(inputChoice.equals("4")) {
-            out.display("Enter The Name Of The Book To Check Out : ");
+            outputConsole.display("Enter The Name Of The Book To Check Out : ");
             String checkedOutBook = inputConsole.getInput();
-            out.display(books.checkOutBook(checkedOutBook, currentUser));
+            outputConsole.display(books.checkOutBook(checkedOutBook, currentUser));
         }
         else if(inputChoice.equals("5")) {
-            out.display("Enter The Name Of The Book To Return : ");
+            outputConsole.display("Enter The Name Of The Book To Return : ");
             String returnBook = inputConsole.getInput();
-            out.display(books.returnBook(returnBook, currentUser));
+            outputConsole.display(books.returnBook(returnBook, currentUser));
         }
         else if(inputChoice.equals("6")) {
-            out.display(currentUser.formattedUserDetails());
+            outputConsole.display(currentUser.formattedUserDetails());
         }
         else if(inputChoice.equals("7")) {
-            out.display(books.bookLibraryStatus());
+            outputConsole.display(books.bookLibraryStatus());
         }
         else if(inputChoice.equals("L")) {
-            out.display("Enter Library Number : ");
+            outputConsole.display("Enter Library Number : ");
             String libraryNumber = inputConsole.getInput();
-            out.display("Enter password : ");
+            outputConsole.display("Enter password : ");
             String password = inputConsole.getInput();
             currentUser = bibliotecaAdmin.login(libraryNumber, password);
         }
@@ -70,7 +70,7 @@ public class Interpreter {
             System.exit(0);
         }
         else {
-            out.display("Select A Valid Option!!");
+            outputConsole.display("Select A Valid Option!!");
         }
         return currentUser.canPerformOperations();
     }
