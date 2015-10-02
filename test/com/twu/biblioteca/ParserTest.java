@@ -17,7 +17,9 @@ public class ParserTest {
         books.add(new Book("Muskan Dhanda", "Author Same", 1234));
         BookLibrary bookLibrary = new BookLibrary(books);
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
-        Parser parser = new Parser(bookLibrary, movieLibrary);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary, outputConsole, inputConsole);
 
         MenuOptions menuOptions = parser.parse("1");
 
@@ -31,7 +33,9 @@ public class ParserTest {
         books.add(new Book("Muskan Dhanda", "Author Same", 1234));
         BookLibrary bookLibrary = new BookLibrary(books);
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
-        Parser parser = new Parser(bookLibrary, movieLibrary);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary, outputConsole, inputConsole);
 
         MenuOptions menuOptions = parser.parse("1");
 
@@ -45,9 +49,11 @@ public class ParserTest {
         books.add(new Book("Muskan Dhanda", "Author Same", 1234));
         BookLibrary bookLibrary = new BookLibrary(books);
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
-        Parser parser = new Parser(bookLibrary, movieLibrary);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary, outputConsole, inputConsole);
 
-        MenuOptions menuOptions = parser.parse("3");
+        MenuOptions menuOptions = parser.parse("4");
 
         assertEquals(menuOptions.getClass(), InvalidOption.class);
     }
@@ -59,7 +65,9 @@ public class ParserTest {
         books.add(new Book("Muskan Dhanda", "Author Same", 1234));
         BookLibrary bookLibrary = new BookLibrary(books);
         MovieLibrary movieLibrary = mock(MovieLibrary.class);
-        Parser parser = new Parser(bookLibrary, movieLibrary);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary, outputConsole, inputConsole);
 
         MenuOptions menuOptions = parser.parse("Not 1 Or 2");
 
@@ -73,10 +81,25 @@ public class ParserTest {
         movies.add(new Movie("Muskan Dhanda", 123, "Director Same", "unrated"));
         MovieLibrary movieLibrary = new MovieLibrary(movies);
         BookLibrary bookLibrary = mock(BookLibrary.class);
-        Parser parser = new Parser(bookLibrary, movieLibrary);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary, outputConsole, inputConsole);
 
         MenuOptions menuOptions = parser.parse("2");
 
         assertEquals(menuOptions.getClass(), ListMoviesOption.class);
+    }
+
+    @Test
+    public void shouldReturnCheckOutMovieOptionObjectOnInputBeing3() {
+        MovieLibrary movieLibrary = mock(MovieLibrary.class);
+        BookLibrary bookLibrary = mock(BookLibrary.class);
+        OutputConsole outputConsole = mock(OutputConsole.class);
+        InputConsole inputConsole = mock(InputConsole.class);
+        Parser parser = new Parser(bookLibrary, movieLibrary, outputConsole, inputConsole);
+
+        MenuOptions menuOptions = parser.parse("3");
+
+        assertEquals(menuOptions.getClass(), CheckOutMovieOption.class);
     }
 }

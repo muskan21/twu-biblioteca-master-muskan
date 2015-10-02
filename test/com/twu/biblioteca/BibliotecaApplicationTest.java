@@ -45,7 +45,8 @@ public class BibliotecaApplicationTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
-        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new MainMenu(new HashMap<String, String>()), new InputConsole(new Scanner(System.in)), new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, new InputConsole(new Scanner(System.in)), outputConsole, user, bibliotecaAdmin, new Parser(new BookLibrary(new ArrayList<Book>()), movieLibrary)), outputConsole, rolesFactory);
+        Parser parser = mock(Parser.class);
+        BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(new MainMenu(new HashMap<String, String>()), new InputConsole(new Scanner(System.in)), new Interpreter(new BookLibrary(new ArrayList<Book>()), movieLibrary, new InputConsole(new Scanner(System.in)), outputConsole, user, bibliotecaAdmin, parser), outputConsole, rolesFactory);
         bibliotecaApplication.welcomeMessage("Welcome To Biblioteca Library Management System.\nHappy To Help.");
         assertEquals("Welcome To Biblioteca Library Management System.\nHappy To Help.\n", out.toString());
     }
@@ -66,7 +67,8 @@ public class BibliotecaApplicationTest {
         users.add(new User("123-5679", "password2", rolesFactory.assignOperations(Role.CUSTOMER), "", "", 0));
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
-        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, new Parser(bookLibrary, movieLibrary));
+        Parser parser = mock(Parser.class);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(menu, inputConsole, interpreter, outputConsole, rolesFactory);
 
         exit.expectSystemExit();
@@ -101,7 +103,8 @@ public class BibliotecaApplicationTest {
         users.add(new User("123-5677", "password3", rolesFactory.assignOperations(Role.LIBRARIAN), "", "", 0));
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         MovieLibrary movieLibrary = new MovieLibrary(new ArrayList<Movie>());
-        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, new Parser(bookLibrary, movieLibrary));
+        Parser parser = mock(Parser.class);
+        Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, inputConsole, outputConsole, user, bibliotecaAdmin, parser);
         BibliotecaApplication bibliotecaApplication = new BibliotecaApplication(menu, inputConsole, interpreter, outputConsole, rolesFactory);
 
         exit.expectSystemExit();
