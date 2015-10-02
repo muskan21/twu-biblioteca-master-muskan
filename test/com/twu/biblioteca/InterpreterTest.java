@@ -73,12 +73,13 @@ public class InterpreterTest {
         OutputConsole outputConsole = mock(OutputConsole.class);
         BibliotecaAdmin bibliotecaAdmin = new BibliotecaAdmin(users, rolesFactory, outputConsole);
         BookLibrary bookLibrary = new BookLibrary(new ArrayList<Book>());
-        Parser parser = new Parser(bookLibrary, movieLibrary);
+        Parser parser = mock(Parser.class);
         Interpreter interpreter = new Interpreter(bookLibrary, movieLibrary, new InputConsole(new Scanner(System.in)), new OutputConsole(new PrintStream(System.out)), user, bibliotecaAdmin, parser);
 
+        when(parser.parse("2")).thenReturn(new ListMoviesOption(movieLibrary));
         interpreter.interpret("2");
 
-        verify(movieLibrary, times(1)).formattedListOfAvailableMovies();
+        verify(parser, times(1)).parse("2");
     }
 
     @Test

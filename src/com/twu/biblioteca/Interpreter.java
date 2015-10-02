@@ -28,12 +28,9 @@ public class Interpreter {
             outputConsole.display("Select A Valid Option!!");
             return currentUser.canPerformOperations();
         }
-        if(inputChoice.equals("1")) {
+        if("1".equals(inputChoice) || "2".equals(inputChoice)) {
             MenuOptions menuOptions = parser.parse(inputChoice);
             outputConsole.display(menuOptions.execute());
-        }
-        else if(inputChoice.equals("2")) {
-            outputConsole.display(movies.formattedListOfAvailableMovies());
         }
         else if(inputChoice.equals("3")) {
             outputConsole.display("Enter The Name Of The Movie To Check Out : ");
